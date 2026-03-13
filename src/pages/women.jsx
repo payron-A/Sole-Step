@@ -1,4 +1,4 @@
-import { originProducts } from "../js Data/products";
+import { originProducts } from "../js/products.jsx";
 import FilterBar from "/src/components/filter/filterbar.jsx";
 import TopFilter from "/src/components/filter/topFilter.jsx";
 import Card from "/src/components/card.jsx";

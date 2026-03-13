@@ -6,6 +6,7 @@ import WomenPage from "./pages/women";
 import KidsPage from "./pages/kids";
 import NewArrivalsPage from "./pages/newArrivals";
 import SalePage from "./pages/sale";
+import ProductDetails from "./pages/productDetails.jsx";
 import { useRef } from "react";
 function App(){
   const toast = useRef();
@@ -19,7 +20,7 @@ function App(){
       <Route path="/kids.jsx" element={<KidsPage/>}/>
       <Route path="/newArrivals.jsx" element={<NewArrivalsPage/>}/>
       <Route path="/sale.jsx" element={<SalePage/>}/>
-      
+      <Route path="/productDetails.jsx" element={<ProductDetails/>}/>
     </Routes>
     <div className="toast" ref={toast}>no comment</div>
     </>

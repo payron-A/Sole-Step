@@ -12,7 +12,6 @@ function FilterBar({filter}){
                     <div key={i} className={`slink ${activeLink == link?"active":""}`}
                          onClick={()=>{
                             setActiveLink(link);
-                            filterLinks(link);
                          }}>{link}</div>
                 )}
             </div>
@@ -22,7 +21,11 @@ function FilterBar({filter}){
                 
                 {filter.sizes.map((size,i)=>
                     <button key={i} className={`sz-btn ${activeSize == size?"act":""}`}
-                            onClick={()=>{setActiveSize(size)}}>{size}</button>
+                            onClick={()=>{
+                                setActiveSize(size);
+                                
+                            }
+                            }>{size}</button>
                 )}
                 </div>
             </div>

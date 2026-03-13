@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 import '../styles/card.css';
 
 function Card({ badge, image, category, title, stars = 0, price, originalPrice=""}) {
   return (
-    <div className="product-card">
+    <Link to='/productDetails.jsx'>
+      <div className="product-card">
       {badge && <div className="badge">{badge}</div>}
       <div className="card-header">
         <button className="wishlist-btn" aria-label="Add to wishlist">
@@ -33,6 +35,7 @@ function Card({ badge, image, category, title, stars = 0, price, originalPrice="
         <button className="add-to-cart-btn">Add to Cart</button>
       </div>
     </div>
+    </Link>
   );
 }
 

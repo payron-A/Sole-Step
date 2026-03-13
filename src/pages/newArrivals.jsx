@@ -1,4 +1,4 @@
-import { originProducts } from "../js Data/products";
+import { originProducts } from "../js/products.jsx";
 import TopFilter from "/src/components/filter/topFilter.jsx";
 import Card from "/src/components/card.jsx";
 import Footer from '../components/footer.jsx'
