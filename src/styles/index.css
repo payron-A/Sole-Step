@@ -1,5 +1,6 @@
 :root {
   --rose: #D9747C;
+  --red: #e03434c5;
   --rose-pale: #F8E8EC;
   --rose-deep: #C98A96;
   --rose-dark: #A8616E;
@@ -25,6 +26,7 @@
     box-sizing: border-box;
     text-decoration: none;
     transition: .5s;
+    list-style: none;
 }
 ::selection{
     background-color: var(--brown);

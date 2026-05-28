@@ -1,41 +1,169 @@
 
-/* ---------- app shell ---------- */
-.app-shell{ display:flex; min-height:100vh; }
-.sidebar{ 
-    width:230px; flex-shrink:0; background:var(--charcoal); color:var(--stone); display:flex; flex-direction:column; padding:22px 14px; gap:26px; }
-.sidebar-logo{ 
-    display:flex; align-items:center; gap:10px; padding:0 8px; }
-.logo-mark{ 
-    width:30px; 
-    height:30px; border-radius:8px; background:var(--rose); color:var(--white); display:flex; align-items:center; justify-content:center; font-family:var(--title-font); font-weight:700; font-size:17px; }
-.logo-word{ color:var(--white); font-weight:700; letter-spacing:.01em; }
-.sidebar-nav{ display:flex;
-     flex-direction:column;
-      gap:2px; flex:1; 
-    background-color:var(--charcoal) }
-.nav-item{ display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:8px; color:var(--taupe); font-size:13.5px; font-weight:500; cursor:pointer; }
-.nav-item svg{ width:17px; height:17px; flex-shrink:0; }
-.nav-item:hover{ color:var(--white); background:rgba(255,255,255,.05); }
-.nav-item.active{ background:var(--rose); color:var(--white); }
-.sidebar-foot{ border-top:1px solid rgba(255,255,255,.08); padding-top:12px; }
+/* __________ APP SHELL __________ */
+.app-shell{
+  display:flex; 
+  min-height:100vh;
+  position: relative;
+  overflow: hidden;
+}
+.main-area{ 
+  flex:1; 
+  min-width:0; 
+  display:flex; 
+  flex-direction:column; 
+  position: relative;
+}
 
-.main-area{ flex:1; min-width:0; display:flex; flex-direction:column; }
-.topbar{ height:var(--nav-h); display:flex; align-items:center; justify-content:space-between; padding:0 28px; background:var(--white); border-bottom:1px solid var(--stone); }
-.topbar-title{ font-family:'DM Sans',sans-serif; font-weight:700; font-size:19px; }
-.topbar-actions{ display:flex; align-items:center; gap:10px; }
-.icon-btn{ width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:var(--beige); color:var(--brown); cursor:pointer; position:relative; }
+/* __________ APP SHELL ________ */
+/* __________ SIDEBAR   ________ */
+
+.sidebar{ 
+  position: relative;
+  width:230px; 
+  background:var(--charcoal); 
+  color:var(--stone); 
+  display:flex; 
+  flex-direction:column; 
+  padding:22px 14px;
+}
+.sidebar-logo{ 
+  display:flex; 
+  align-items:center; 
+  gap:10px; 
+  padding:0 8px; 
+}
+.logo-mark{ 
+  
+  width:30px; 
+  height:30px; 
+  border-radius:8px; 
+  background:var(--rose); 
+  color:var(--white); 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  font-family:var(--title-font); 
+  font-weight:700; 
+  font-size:17px;
+ }
+.logo-word{ 
+  color:var(--white); 
+  font-weight:700; 
+  letter-spacing:.01em; 
+}
+.sidebar-nav{ 
+  max-height:90%;
+  background-color:transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex:1;
+}
+.nav-item{ 
+  display:flex; 
+  align-items:center; 
+  gap:12px; padding:11px 12px; 
+  width: 100%;
+  border-radius:8px; 
+  color:var(--taupe); 
+  font-size:13.5px; 
+  font-weight:500; 
+  cursor:pointer; 
+}
+.nav-item svg{ 
+  width:17px; height:17px; 
+  flex-shrink:0; 
+}
+.nav-item:hover{ 
+  color:var(--white); 
+  background:rgba(255,255,255,.05); 
+}
+.nav-item.active{ 
+  background:var(--rose); 
+  color:var(--white); 
+}
+.sidebar-foot{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:12px; }
+.sidebar-foot .nav-item{
+  color:var(--white);
+  background-color:var(--red);
+}
+
+/* ________ APP SHELL ________ */
+/* ________ TOPBAR    ________ */
+
+.topbar{ 
+  height:var(--nav-h); 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  padding:0 28px; 
+  background:var(--white); 
+  border-bottom:1px solid var(--stone); 
+}
+.topbar-title{ 
+  font-weight:700; 
+  font-size:19px; 
+}
+.topbar-actions{ 
+  display:flex; 
+  align-items:center;
+  gap:10px; 
+}
+.icon-btn{ 
+  width:36px; 
+  height:36px; 
+  border-radius:8px; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  background:var(--beige); 
+  color:var(--brown); 
+  cursor:pointer; 
+  position:relative; 
+}
 .icon-btn svg{ width:16px; height:16px; }
 .icon-btn:hover{ background:var(--rose-pale); color:var(--rose-dark); }
-.icon-btn.sm{ width:30px; height:30px; }
-.icon-btn.has-dot::after{ content:''; position:absolute; top:8px; right:8px; width:6px; height:6px; border-radius:50%; background:var(--rose); }
-.avatar-chip{ display:flex; align-items:center; gap:8px; padding:4px 10px 4px 4px; border-radius:20px; background:var(--beige); font-size:13px; font-weight:600; }
-.avatar-chip img{ width:28px; height:28px; border-radius:50%; object-fit:cover; }
+.icon-btn.has-dot::after{ 
+  content:''; 
+  position:absolute; 
+  top:8px; 
+  right:8px; 
+  width:6px; 
+  height:6px; 
+  border-radius:50%; 
+  background:var(--rose); 
+}
+.avatar-chip{ 
+  display:flex; 
+  align-items:center; 
+  gap:8px; 
+  padding:4px 10px 4px 4px; 
+  border-radius:20px; 
+  background:var(--beige); 
+  font-size:13px; 
+  font-weight:600; 
+}
+.avatar-chip img{ 
+  width:28px; 
+  height:28px; 
+  border-radius:50%; 
+  object-fit:cover; 
+}
 
-.content{ padding:26px 28px 60px; overflow-y:auto; }
+/* .content{ 
+  padding:26px 28px 60px;
+   overflow-y:auto; } */
 .page{ display:flex; flex-direction:column; gap:22px; }
 
-/* ---------- dashboard ---------- */
-.greeting{ font-size:15px; color:var(--taupe); }
+/* ________ APP SHELL ________ */
+/* ________ TOPBAR    ________ */
+
+.greeting{ 
+  font-size:15px; 
+  color:var(--taupe); 
+}
 .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
 .stat-card{ background:var(--white); border:1px solid var(--stone); border-radius:14px; padding:18px 20px; display:flex; flex-direction:column; gap:6px; }
 .stat-label{ font-size:12px; color:var(--taupe); font-weight:600; }
