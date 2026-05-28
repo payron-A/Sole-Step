@@ -1,4 +1,4 @@
-function Panel({x}){
+function Panel({x=[200]}){
     const y = 110;
     return <div className="panel sales-panel">
               <div className="panel-head">

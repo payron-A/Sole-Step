@@ -405,6 +405,7 @@
   z-index: 10;
   font-size:11px; 
   font-weight:700; 
+  background: var(--gold);
 }
 .status.ok{ 
   color:#2E7D4F; 
@@ -462,6 +463,47 @@
   font-weight:600; 
   display:block; 
   margin-bottom:2px; 
+}
+
+/* ________ APP SHELL ________ */
+/* ________ Analytics   ________ */
+
+
+.bar-chart{ 
+  display:flex; 
+  align-items:flex-end; 
+  gap:10px; 
+  height:150px; 
+}
+.bar-chart .bar{ 
+  flex:1; 
+  background:var(--gold); 
+  border-radius:6px 6px 0 0; 
+}
+.donut-panel{ 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center; 
+  gap:14px; 
+}
+.donut{ 
+  width:140px; 
+  height:140px; 
+  transform:rotate(-90deg); 
+}
+.donut-legend{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:8px; 
+  font-size:12px; 
+  width:100%; 
+}
+.donut-legend i{ 
+  width:9px; 
+  height:9px; 
+  border-radius:50%; 
+  display:inline-block; 
+  margin-right:8px; 
 }
 
 

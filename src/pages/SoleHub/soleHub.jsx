@@ -4,6 +4,7 @@ import ProductsPage from './products.jsx';
 import  CustomersPage from './customers.jsx'
 import Sidebar from '../../components/soleHubComponents/sidebar';
 import InventoryPage from './inventory.jsx';
+import AnalyticsPage from './analytics.jsx';
 function SoleHubPage(){
     return (
 <div className="app-shell">
@@ -13,6 +14,7 @@ function SoleHubPage(){
     <ProductsPage/>
     <CustomersPage/>
     <InventoryPage/>
+    <AnalyticsPage/>
   </main>
 </div>
 )

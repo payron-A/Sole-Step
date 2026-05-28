@@ -51,12 +51,6 @@ function InventoryPage(){
                                         stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
                                     </svg>
                                 </button>
-                                <button className="icon-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" 
-                                        stroke="currentColor" strokeWidth="1.8" 
-                                        strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
-                                    </svg>
-                                </button>
                             </div>
                         </td>
                     </tr>
@@ -80,12 +74,6 @@ function InventoryPage(){
                                 <button className="icon-btn">
                                     <svg viewBox="0 0 24 24" fill="none" 
                                         stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
-                                    </svg>
-                                </button>
-                                <button className="icon-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" 
-                                        stroke="currentColor" strokeWidth="1.8" 
-                                        strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
                                     </svg>
                                 </button>
                             </div>
