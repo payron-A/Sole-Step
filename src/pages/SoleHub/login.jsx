@@ -27,8 +27,8 @@ function LoginPage(){
                         type="checkbox"/>
                 <span>Remember me</span>
             </label>
-            <a href="#" className="forgot">
-                Don't have account ?
+            <a className="forgot">
+                I'm Customer
             </a>
         </div>
         <Button type="submit" 
