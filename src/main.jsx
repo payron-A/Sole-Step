@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <CartProvider>
         <ToastProvider>
-          <App />
+            <App />
         </ToastProvider>
       </CartProvider>
     </BrowserRouter>

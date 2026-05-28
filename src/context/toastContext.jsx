@@ -9,7 +9,7 @@ export function ToastProvider(){
         setTimeout(() => {
         toastRef.current.classList.remove("show");
         }, 2000);
-  }
+    }
     return (
     <ToastContext.Provider value={{showToast,useToast}}>
         <App/>

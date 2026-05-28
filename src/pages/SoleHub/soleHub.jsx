@@ -54,8 +54,10 @@ function SoleHubPage(){
           {page === "Log in"?
             "":<Topbar currentPage={page}/>
             }
-          <DashboardPage display={
-            page === "Dashboard"?"block":"none"}/>
+          <DashboardPage 
+            setPage={setPage}
+            display={
+              page === "Dashboard"?"block":"none"}/>
           <ProductsPage display={
             page === "Products"?"block":"none"}/>
           <CustomersPage display={

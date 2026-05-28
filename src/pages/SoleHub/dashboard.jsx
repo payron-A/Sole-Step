@@ -1,6 +1,8 @@
 
 import Panel from '../../components/soleHubComponents/panel';
-function DashboardPage({display}){
+import { originProducts } from '../../js/products';
+import {allCustomers} from '../../js/customers.js';
+function DashboardPage({display,setPage}){
     return (
 
 <section className="page"style={{display:display}}>
@@ -19,12 +21,12 @@ function DashboardPage({display}){
     </div>
     <div className="stat-card">
       <span className="stat-label">Customers</span>
-      <span className="stat-value">124</span>
+      <span className="stat-value">{allCustomers.length}</span>
       <span className="stat-delta up">+3.8%</span>
     </div>
     <div className="stat-card">
       <span className="stat-label">Products</span>
-      <span className="stat-value">68</span>
+      <span className="stat-value">{originProducts.length}</span>
       <span className="stat-delta down">-1.2%</span>
     </div>
     </div>
@@ -33,7 +35,9 @@ function DashboardPage({display}){
       <div className="panel">
           <div className="panel-head">
             <h3>Best selling products</h3>
-            <a href="products.html" className="see-all">See all</a>
+            <a onClick={()=>setPage("Products")}
+              className="see-all">See all
+            </a>
           </div>
           <ul className="mini-list">
             <li>

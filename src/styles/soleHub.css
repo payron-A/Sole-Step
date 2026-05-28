@@ -225,6 +225,7 @@
   font-size:14.5px; 
 }
 .see-all{ 
+  cursor: pointer;
   font-size:12px; 
   color:var(--rose-dark); 
   font-weight:600; 
@@ -373,7 +374,6 @@
   background:var(--rose-pale); 
 }
 .cell-thumb{ 
- 
   width:34px; 
   height:34px; 
   border-radius:8px; 
@@ -382,6 +382,8 @@
   align-items:center;
   justify-content:center; 
   font-size:16px; 
+  object-fit: cover;
+  overflow: hidden;
 }
 .row-actions{
   padding:3px;
@@ -849,7 +851,49 @@
 }
 
 
+/* ________ Login ________ */
+/* ________ Error Message   ________ */
 
+.error {
+  padding: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  background: red;
+  border-radius: 8px;
+  box-shadow: 0px 0px 5px -3px #111;
+  margin-top: 12px;
+  animation: fadeUp .3s;
+}
+
+.error-icon{
+  width: 20px;
+  height: 20px;
+  transform: translateY(-2px);
+  margin-right: 8px;
+}
+
+.error-icon path {
+  fill: #fff;
+}
+
+.error-title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* ________ Products ________ */
+/* ________ Hidden Filterbar   ________ */
+
+.hidden-filterbar{
+  display: flex;
+  justify-content: center;
+}
+.hidden-filterbar.hide{
+  display: none;
+}
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
   .dash-grid{ grid-template-columns:1fr; }
