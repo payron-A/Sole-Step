@@ -1,11 +1,13 @@
 import { useRef} from "react";
 function AddProductPage({display,setPage,manageProduct,isEditType,editPro}){
+
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
     const priceRef = useRef(null);
     const stockRef = useRef(null);
     const categoryRef = useRef(null);
     const typeRef = useRef(null);
+    
     if(isEditType){
         titleRef.current.value = editPro.name;
         descriptionRef.current.value = "";
@@ -14,6 +16,7 @@ function AddProductPage({display,setPage,manageProduct,isEditType,editPro}){
         typeRef.current.value = editPro.type
         categoryRef.current.value = editPro.cat;
     }
+
     function handleSave(){
         const title = titleRef.current.value.trim();
         const description = descriptionRef.current.value.trim();
@@ -45,7 +48,6 @@ function AddProductPage({display,setPage,manageProduct,isEditType,editPro}){
         priceRef.current.value = '';
         stockRef.current.value = '';
     }
-
 
     return(
 <section className="page"style={{display:display}}>

@@ -1,7 +1,7 @@
 export const originProducts =[
   {id:1,name:'White Premium Sneakers',price:89,stars:4,cat:'women',badge:'New',img:'https://picsum.photos/seed/p01/400/450',colors:["red","yello","white","green","blue"],size:[23,34,6,23,6],type:'sneakers',stock:3},
   {id:2,name:'Pink Sneakers',price:79,stars:4,cat:'women',badge:'',img:'https://picsum.photos/seed/p02/400/450',colors:["red","yello","white","green","blue"],size:[23,34,6,23,6],type:'sandals'},
-  {id:3,name:'Beige sandals',price:129,stars:4,cat:'women',badge:'Hot',img:'https://picsum.photos/seed/p03/400/450',colors:["red","yello","white","green","blue"],size:[23,34,6,23,6],type:'formal',stock:4},
+  {id:3,name:'Beige sandals',price:129,stars:4,cat:'women',badge:'New',img:'https://picsum.photos/seed/p03/400/450',colors:["red","yello","white","green","blue"],size:[23,34,6,23,6],type:'formal',stock:4},
   {id:4,name:'Black boots',price:149,stars:4,cat:'women',badge:'',img:'https://picsum.photos/seed/p04/400/450',colors:["red","yello","white","green","blue"],size:[23,34,6,23,6],type:'boots',stock:3},
   {id:5,stars:4,name:'Pink formal',price:89,cat:'women',badge:'New',img:'https://picsum.photos/seed/p05/400/450',colors:["red","yello","white","green","blue"],size:[23,34,6,23,6],type:'boots',stock:3},
   {id:6,stars:4,name:'White Sandals',price:79,cat:'women',badge:'',img:'https://picsum.photos/seed/p06/400/450',colors:["red","yello","white","green","blue"],size:[23,34,6,23,6],type:'sneakers',stock:3},

@@ -28,21 +28,17 @@ const defaultSettings = JSON.parse(
 
 function SoleHubPage(){
 
-  // _____ AUTH _____
+// _____ STATE _____
+// _____ Admin / Login _____
   const [admin,setAdmin] = useState(
       JSON.parse(localStorage.getItem("currentAdmin"))
   );
-  const [isLogin,setIsLogin] = useState(
-      localStorage.getItem("isLogin") === "true"
-  );
 
-  const [page,setPage] = useState(isLogin && admin ? "Dashboard" : "Log in");
-
-  // _____ Admins (credentials). Seeded once from /admin.json, then fully
-  // local so a password change actually sticks on the next login.
+// _____ Admins (credentials). Seeded once from /admin.json, then fully
+// local so a password change actually sticks on the next login.
   const [admins,setAdmins] = useState(()=>{
     const saved = localStorage.getItem("admins");
-    return saved ? JSON.parse(saved) : null;
+      return saved ? JSON.parse(saved) : null;
   });
   useEffect(()=>{
     if(admins !== null) return; // already loaded from storage
@@ -52,6 +48,14 @@ function SoleHubPage(){
       .catch(() => setAdmins([]));
   },[admins]);
 
+  const [isLogin,setIsLogin] = useState(
+      localStorage.getItem("isLogin") === "true"
+  );
+
+// _____ Change Page _____
+  const [page,setPage] = useState(isLogin && admin ? "Dashboard" : "Log in");
+
+// _____ Change Password _____
   function changePassword(currentPassword, newPassword){
     if(!admin) return { ok:false, message:"You're not logged in." };
     if(admin.password !== currentPassword){
@@ -68,10 +72,11 @@ function SoleHubPage(){
     return { ok:true, message:"Password updated." };
   }
 
-  // _____ Products _____
+// _____ SOLEHUB _____
+// _____ PRODUCTS _____
   const [products,setProducts] = useState(()=>loadOrSeed("products", originProducts));
-  // _____ Edit / Add Products
 
+// _____ Add / Edit / Remove Products
   const [isEditType,setIsEditType] = useState(false);
   const [editPro,setEditPro] = useState(null);
   const [editId,setEditId] = useState(null);
@@ -97,9 +102,10 @@ function SoleHubPage(){
     ));
   }
 
-  // _____ Customers _____
+// _____ CUSTOMERS _____
   const [customers,setCustomers] = useState(()=>loadOrSeed("customers", allCustomers));
 
+// _____ Add / Block / Remove Customers
   function addCustomer(newCustomer){
     setCustomers(prev => [...prev, { id: Date.now(), orders:0, totalSpent:0, status:"active", ...newCustomer }]);
   }
@@ -112,9 +118,10 @@ function SoleHubPage(){
     ));
   }
 
-  // _____ Coupons _____
+// _____ COUPONS _____
   const [coupons,setCoupons] = useState(()=>loadOrSeed("coupons", initialCoupons));
 
+// _____ Add / Remove Coupons
   function addCoupon(newCoupon){
     setCoupons(prev => [...prev, { id: Date.now(), ...newCoupon }]);
   }
@@ -122,17 +129,17 @@ function SoleHubPage(){
     setCoupons(prev => prev.filter(c => c.id !== id));
   }
 
-  // _____ Reviews _____
+// _____ REVIEWS _____
   const [reviews,setReviews] = useState(()=>loadOrSeed("reviews", initialReviews));
 
   function setReviewStatus(id, status){
     setReviews(prev => prev.map(r => r.id === id ? { ...r, status } : r));
   }
 
-  // _____ Settings _____
+// _____ SETTINGS _____
   const [settings,setSettings] = useState(()=>loadOrSeed("settings", defaultSettings));
 
-  // _____ Persist every slice whenever it changes _____
+// _____ Persist every slice when it's changes
   useEffect(()=>{ save("products", products) },[products]);
   useEffect(()=>{ save("customers", customers) },[customers]);
   useEffect(()=>{ save("coupons", coupons) },[coupons]);
@@ -143,6 +150,7 @@ function SoleHubPage(){
     localStorage.setItem("currentAdmin", JSON.stringify(admin));
   },[admin, isLogin]);
 
+// _____ Hide Sidebars in these pages 
   const isFullScreenPage = page === "Log in" || page === "Add Product";
 
   return (

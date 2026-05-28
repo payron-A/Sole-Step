@@ -14,12 +14,6 @@
   transform: translateY(-6px);
 }
 
-@media (max-width:700px){
-    .product-card{
-      height: 330px;
-    }
-}
-
 /* Badge */
 .badge {
   position: absolute;
@@ -162,6 +156,7 @@
 /* Scrollable track */
 .carousel-track {
   display: flex;
+  justify-content: space-around;
   gap: 20px;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
