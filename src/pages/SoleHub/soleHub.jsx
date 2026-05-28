@@ -22,18 +22,23 @@ import { initialCoupons } from '../../js/coupons';
 import { initialReviews } from '../../js/reviews';
 import { loadOrSeed, save } from '../../js/storage';
 
-const defaultSettings = JSON.parse(
-          localStorage.getItem("currentAdmin")
-)
+const defaultSettings = {
+    email:"az.zi.mo.fa@gmail.com",    
+    password:"GoiGoeool",
+    emailNotifications: true,
+    lowStockAlerts: true
+};
 
 function SoleHubPage(){
 
 // _____ STATE _____
 // _____ Admin / Login _____
-  const [admin,setAdmin] = useState(
-      JSON.parse(localStorage.getItem("currentAdmin"))
+  const [admin,setAdmin] = useState(()=>{
+    const saved = JSON.parse(localStorage.getItem("currentAdmin"))
+    return saved ? saved:defaultSettings;
+  }
+       
   );
-
 // _____ Admins (credentials). Seeded once from /admin.json, then fully
 // local so a password change actually sticks on the next login.
   const [admins,setAdmins] = useState(()=>{
@@ -49,28 +54,13 @@ function SoleHubPage(){
   },[admins]);
 
   const [isLogin,setIsLogin] = useState(
-      localStorage.getItem("isLogin") === "true"
+      localStorage.getItem("isLogin")
   );
 
 // _____ Change Page _____
   const [page,setPage] = useState(isLogin && admin ? "Dashboard" : "Log in");
 
-// _____ Change Password _____
-  function changePassword(currentPassword, newPassword){
-    if(!admin) return { ok:false, message:"You're not logged in." };
-    if(admin.password !== currentPassword){
-      return { ok:false, message:"Current password is incorrect." };
-    }
-    const updatedAdmins = admins.map(a =>
-      a.email === admin.email ? { ...a, password:newPassword } : a
-    );
-    setAdmins(updatedAdmins);
-    save("admins", updatedAdmins);
-    const updatedAdmin = { ...admin, password:newPassword };
-    setAdmin(updatedAdmin);
-    save("currentAdmin", updatedAdmin);
-    return { ok:true, message:"Password updated." };
-  }
+
 
 // _____ SOLEHUB _____
 // _____ PRODUCTS _____
@@ -136,15 +126,13 @@ function SoleHubPage(){
     setReviews(prev => prev.map(r => r.id === id ? { ...r, status } : r));
   }
 
-// _____ SETTINGS _____
-  const [settings,setSettings] = useState(()=>loadOrSeed("settings", defaultSettings));
 
 // _____ Persist every slice when it's changes
   useEffect(()=>{ save("products", products) },[products]);
   useEffect(()=>{ save("customers", customers) },[customers]);
   useEffect(()=>{ save("coupons", coupons) },[coupons]);
   useEffect(()=>{ save("reviews", reviews) },[reviews]);
-  useEffect(()=>{ save("settings", settings) },[settings]);
+  useEffect(()=>{ save("admins", admins) },[admins]);
   useEffect(()=>{
     localStorage.setItem("isLogin", isLogin);
     localStorage.setItem("currentAdmin", JSON.stringify(admin));
@@ -159,6 +147,7 @@ function SoleHubPage(){
     <Sidebar setPage={setPage}
              currentPage={page}
              setIsLogin={setIsLogin}
+             defaultSettings={defaultSettings}
              setAdmin={setAdmin}/>
   }
   <main className="main-area">
@@ -221,9 +210,12 @@ function SoleHubPage(){
                    setReviewStatus={setReviewStatus}
                    display={page === "Reviews" ? "block" : "none"}/>
 
-      <SettingsPage settings={settings}
-                    setSettings={setSettings}
-                    changePassword={changePassword}
+      <SettingsPage 
+                    admins={admins}
+                    setAdmins={setAdmins}
+                    admin={admin}
+                    setAdmin={setAdmin}
+                    isLogin={isLogin}
                     display={page === "Settings" ? "block" : "none"}/>
 
       <NotificationPage products={products}

@@ -1,5 +1,5 @@
 
-function Sidebar({setPage,currentPage,setIsLogin,setAdmin}){
+function Sidebar({setPage,currentPage,setIsLogin,setAdmin,defaultSettings}){
   function isActive(page){
     return page === currentPage;
   }
@@ -98,7 +98,7 @@ function Sidebar({setPage,currentPage,setIsLogin,setAdmin}){
         onClick={()=>{
           setPage("Log in");
           setIsLogin(false);
-          setAdmin(null);
+          setAdmin(defaultSettings);
           
         }}>
       <svg viewBox="0 0 24 24" fill="none" 

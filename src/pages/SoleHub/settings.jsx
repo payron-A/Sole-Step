@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
-
-function SettingsPage({display,settings,setSettings,changePassword}){
-
+import { save } from '../../js/storage';
+function SettingsPage({display,admin,setAdmin,admins,setAdmins,isLogin}){
     const [isEditing,setIsEditing] = useState(false);
     const [pwMsg,setPwMsg] = useState(null);
 
@@ -10,13 +9,36 @@ function SettingsPage({display,settings,setSettings,changePassword}){
     const confirmPwRef = useRef(null);
 
     function updateField(field,value){
-        setSettings(prev => ({...prev, [field]: value}));
+        setAdmin(prev => ({...prev, [field]: value}));
+        const updateEmail = admins.map(a =>
+                a.password === admin.password?
+                    { ...a, [field]:value }
+                    : a
+        )
+        setAdmins(updateEmail);
     }
     function toggleField(field){
-        setSettings(prev => ({...prev, [field]: !prev[field]}));
+        setAdmin(prev => ({...prev, [field]: !prev[field]}));
+        
     }
     function handleEditToggle(){
         setIsEditing(prev => !prev);
+    }
+    // _____ Change Password _____
+    function changePassword(currentPassword, newPassword){
+        if(!admin || !isLogin) return { ok:false, message:"You're not logged in." };
+        if(admin.password !== currentPassword){
+          return { ok:false, message:"Current password is incorrect." };
+        }
+        const updatedAdmins = admins.map(a =>
+          a.email === admin.email ? { ...a, password:newPassword } : a
+        );
+        setAdmins(updatedAdmins);
+        save("admins", updatedAdmins);
+        const updatedAdmin = { ...admin, password:newPassword };
+        setAdmin(updatedAdmin);
+        save("currentAdmin", updatedAdmin);
+        return { ok:true, message:"Password updated." };
     }
 
     function handlePasswordSubmit(e){
@@ -31,12 +53,15 @@ function SettingsPage({display,settings,setSettings,changePassword}){
         if(next !== confirm){
             return setPwMsg({ ok:false, text:"New passwords don't match." });
         }
-        const result = changePassword(current, next);
+        let result = changePassword(current, next);
         setPwMsg({ ok:result.ok, text:result.message });
         if(result.ok){
             currentPwRef.current.value = "";
             newPwRef.current.value = "";
             confirmPwRef.current.value = "";
+            setTimeout(() => {
+                setPwMsg("")
+            }, 1000);
         }
     }
     return (
@@ -58,22 +83,15 @@ function SettingsPage({display,settings,setSettings,changePassword}){
     <div className="panel settings-form">
         <label className="field">
             <span>Admin email</span>
-            <input value={settings.email}
+            <input value={admin.email}
                    readOnly={!isEditing}
                    onChange={e=>updateField("email",e.target.value)}/>
-        </label>
-        <label className="field">
-            <span>Language</span>
-            <select defaultValue="en">
-                <option disabled value="en">English</option>
-                <option disabled>العربية</option>
-            </select>
         </label>
         <label className="switch-row">
             <span>Email notifications</span>
             <input type="checkbox"
                 className="switch"
-                checked={settings.emailNotifications}
+                checked={admin.emailNotifications}
                 disabled={!isEditing}
                 onChange={()=>toggleField("emailNotifications")}/>
         </label>
@@ -81,7 +99,7 @@ function SettingsPage({display,settings,setSettings,changePassword}){
             <span>Low stock alerts</span>
             <input type="checkbox"
                 className="switch"
-                checked={settings.lowStockAlerts}
+                checked={admin.lowStockAlerts}
                 disabled={!isEditing}
                 onChange={()=>toggleField("lowStockAlerts")}/>
         </label>
@@ -108,7 +126,7 @@ function SettingsPage({display,settings,setSettings,changePassword}){
                 <input type="password" ref={confirmPwRef}/>
             </label>
             {pwMsg &&
-                <small style={{color: pwMsg.ok ? "var(--rose,#c2705f)" : "#c91212"}}>
+                <small style={{color: pwMsg.ok ? "#48b43a" : "#c91212"}}>
                     {pwMsg.text}
                 </small>
             }
