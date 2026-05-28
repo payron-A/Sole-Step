@@ -8,6 +8,7 @@ import AnalyticsPage from './analytics.jsx';
 import CouponsPage from './coupons.jsx';
 import ReviewsPage from './reviews.jsx';
 import SettingsPage from './settings.jsx';
+import LoginPage from './login.jsx';
 function SoleHubPage(){
     return (
 <div className="app-shell">
@@ -21,6 +22,7 @@ function SoleHubPage(){
     <CouponsPage/>
     <ReviewsPage/>
     <SettingsPage/>
+    <LoginPage/>
   </main>
 </div>
 )
