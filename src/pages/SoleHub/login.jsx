@@ -1,11 +1,80 @@
 import { useEffect, useRef, useState } from 'react';
 import Button from '../../components/button.jsx';
+import { Link } from 'react-router-dom';
 
-function LoginPage({display}){
-    const password ="azzedine.007";
-    const email = "az.zi.mo.fa@gmail.com";
-    const emailRef = useRef(null);
-    const passwordRef = useRef(null);
+function LoginPage({display,setPage,setAdmin}){
+
+// _____ STATE _____
+// _____ Inputs Value 
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+// _____ Admins : JSON File
+    const [admins,setAdmins] = useState();
+
+// _____ Get Current Admin after Fetching Admins Json file
+    const [currentAdmin , setCurrentAdmin] = useState();
+
+
+// _____ Check if still Fetching
+    const [isLoading,setIsLoading] = useState(false)
+
+// _____ Error Message when filed Fetching Admins file 
+    const [errorMsg,setErrorMsg] = useState();
+
+// _____ Change Page && Get Admin Info after success LogIn
+    function goToDashboard(){
+      setAdmin(currentAdmin);
+      setPage("Dashboard");
+    }
+
+// _____ Login 
+    function checkAccount(){
+      const emailIpt = emailRef.current.value.trim();
+      const passwordIpt = passwordRef.current.value.trim();
+      if(!admins) return setErrorMsg("Network Error");
+      if(emailIpt && passwordIpt){
+          setCurrentAdmin(
+            admins.find(admin => admin.email === emailIpt)
+          )
+          console.log(currentAdmin)
+          if(!currentAdmin)return setErrorMsg("Check you Email");
+          if(emailIpt === currentAdmin.email){
+            if(passwordIpt === currentAdmin.password){
+              return goToDashboard();
+            }else{
+              return setErrorMsg("Check you Password")
+            }
+          }
+      }
+      return setErrorMsg("FillOut your Data")
+    }
+
+// _____ Fetching Api
+    async function fetchApi(){
+          try{
+            setIsLoading(true)
+            const  rs = await fetch("/admin.json");
+            if(!rs.ok)return setErrorMsg("Field Fetch Files")
+            const data = await rs.json();
+            return data;
+          }
+          catch(error){
+            setErrorMsg(error.message)
+          }
+          finally{
+            setIsLoading(false)
+          }
+      }
+    useEffect(()=>{
+      async function load(){
+          const data = await fetchApi()
+          setAdmins(data);
+      };
+      load();
+    },[]);
+
+
     return (
 <section className="page"style={{display:display}}>
 <div className="login-screen">
@@ -18,7 +87,10 @@ function LoginPage({display}){
   </div>
   <div className="login-panel">
     <form className="login-form"
-          onSubmit={(e)=> e.preventDefault()}>
+          onSubmit={(e)=> {
+            e.preventDefault();
+            checkAccount();
+            }}>
         <h2>Login</h2>
         <label className="field">
             <span>Email</span>
@@ -31,20 +103,22 @@ function LoginPage({display}){
             <span>Password</span>
             <input type="password"
                    ref={passwordRef}/>
+            {errorMsg && <Error msg={errorMsg}/>}
         </label>
         <div className="field-row">
             <label className="remember">
                 <input  className='switch'
-                        type="checkbox"/>
+                        type="checkbox"
+                        />
                 <span>Remember me</span>
             </label>
-            <a className="forgot">
+            <Link to="/"className="forgot">
                 I'm Customer
-            </a>
+            </Link>
         </div>
         <Button type="submit" 
                 variant="btn-rose">
-                Login
+                {isLoading?"Loading":"Login"}
         </Button>
     </form>
   </div>
@@ -52,3 +126,8 @@ function LoginPage({display}){
 </section>    )
 }
 export default LoginPage;
+export function Error({msg = "Invalid Data"}){
+  return (
+    <div>Error: {msg}</div>
+  )
+}
