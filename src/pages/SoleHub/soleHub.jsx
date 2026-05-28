@@ -13,6 +13,7 @@ import LoginPage from './login.jsx';
 import AddProductPage from './addProduct.jsx';
 import NotificationPage from './notification.jsx';
 import { useEffect, useState } from 'react';
+import { originProducts } from '../../js/products';
 function SoleHubPage(){
 
   // _____ STATE _____
@@ -30,12 +31,33 @@ function SoleHubPage(){
   );
 
   // _____ Products
-  
+  const [products,setProducts] = useState(
+    JSON.parse(localStorage.getItem("products")) || originProducts);
+  useEffect(()=>{
+    localStorage.setItem("products",JSON.stringify(products))
+  },[products])
 
+  function manageProduct(newProduct){
+    if(!isEditType){
+      setProducts(prev => [...prev, { id: Date.now(), ...newProduct }]);
+    }else{
+      const editProducts = [...products]
+      editProducts.splice(editId,1,newProduct);
+      setProducts(editProducts)
+    }
+    setPage("Products");
+    setEditPro(null);
+    setIsEditType(false);
+  }
+  
   useEffect(()=>{
     localStorage.setItem("isLogin",isLogin);
     localStorage.setItem("currentAdmin",JSON.stringify(admin));
   },[admin][isLogin])
+  // _____ Edit Product
+  const [isEditType,setIsEditType] = useState(false);
+  const [editPro,setEditPro] = useState(null);
+  const [editId,setEditId] = useState(null);
     return (
 <div className="app-shell">
   {page === "Log in" || page === "Add Product"?
@@ -53,6 +75,9 @@ function SoleHubPage(){
 
     <AddProductPage 
               setPage={setPage}
+              manageProduct={manageProduct}
+              isEditType={isEditType}
+              editPro={editPro}
               display={
                 page === "Add Product"?"block":"none"}/>
 
@@ -66,6 +91,11 @@ function SoleHubPage(){
               page === "Dashboard"?"block":"none"}/>
           <ProductsPage 
             setPage={setPage}
+            products={products}
+            setProducts={setProducts}
+            setIsEditType={setIsEditType}
+            setEditPro={setEditPro}
+            setEditId={setEditId}
             display={
               page === "Products"?"block":"none"}
             />

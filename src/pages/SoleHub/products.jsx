@@ -2,12 +2,9 @@ import { useRef, useState } from "react";
 import { originProducts } from "../../js/products";
 import TopFilter from '../../components/filter/topFilter';
 
-function ProductsPage({display,setPage}){
+function ProductsPage({display,setPage,products,setProducts,setIsEditType,setEditPro,setEditId}){
 
 // _____ STATE _____
-// _____ Products
-    const [products,setProducts] = useState(originProducts);
-
 // _____ Products when search 
     const [productSearch,setProductSearch] = useState(originProducts);
 
@@ -49,6 +46,8 @@ function ProductsPage({display,setPage}){
                 break;
         }
     }
+
+
     return(
 <section className="page"style={{display:display}}>
     <div className="toolbar">
@@ -91,7 +90,7 @@ function ProductsPage({display,setPage}){
                 <tr>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Category</th>
+                    <th>Type</th>
                     <th>Stock</th>
                     <th>Price</th>
                     <th>Status</th>
@@ -121,13 +120,29 @@ function ProductsPage({display,setPage}){
                     </td>
                     <td>
                         <div className="row-actions">
-                            <button className="icon-btn">
+                            <button className="icon-btn"
+                                    title="Edit"
+                                    onClick={()=>{
+                                        setIsEditType(true)
+                                        setEditPro(product)
+                                        setEditId(i)
+                                        setPage('Add Product')
+                                    }}>
                                 <svg viewBox="0 0 24 24" fill="none" 
                                     stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
                                 </svg>
                             </button>
-                            <button className="icon-btn">
-                                <svg viewBox="0 0 24 24" fill="none" 
+                            <button className="icon-btn"
+                                    title="Remove"
+                                    onClick={()=>{
+                                        setProducts(
+                                            [...products].filter((pro)=>
+                                                pro.id !== product.id
+                                            )
+                                        );
+                                    }}>
+                                <svg viewBox="0 0 24 24" 
+                                    fill="none" 
                                     stroke="currentColor" strokeWidth="1.8" 
                                     strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
                                 </svg>

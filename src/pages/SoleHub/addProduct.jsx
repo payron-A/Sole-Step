@@ -1,24 +1,52 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-function AddProductPage({display,setPage}){
-    const [IsavilableToSave,setIsavilableToSave] = useState(false);
+function AddProductPage({display,setPage,manageProduct,isEditType,editPro}){
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
     const priceRef = useRef(null);
     const stockRef = useRef(null);
     const categoryRef = useRef(null);
-    function validValue(){
-        if(!titleRef && !descriptionRef &&
-           !priceRef && !categoryRef &&
-           !stockRef) return false;
+    const typeRef = useRef(null);
+    if(isEditType){
+        titleRef.current.value = editPro.name;
+        descriptionRef.current.value = "";
+        priceRef.current.value = editPro.price;
+        stockRef.current.value = editPro.stock;
+        typeRef.current.value = editPro.type
+        categoryRef.current.value = editPro.cat;
+    }
+    function handleSave(){
         const title = titleRef.current.value.trim();
         const description = descriptionRef.current.value.trim();
         const price = priceRef.current.value.trim();
         const stock = stockRef.current.value.trim();
         const category = categoryRef.current.value;
+        const type = typeRef.current.value;
 
-        setIsavilableToSave(true)
+        if(!title || !price)return;
+
+        manageProduct({
+            name: title,
+            desc: description,
+            price: Math.abs(+price),
+            stock: Math.abs(+stock) >= 100?99:Math.abs(+stock),
+            cat: category.toLowerCase(),
+            type: type.toLowerCase(),
+            img: 'https://picsum.photos/seed/'+Date.now()+'/400/450',
+            badge: 'New',
+            stars: 0,
+            colors: [],
+            size: []
+        });
+
+
+        // reset the form for the next product
+        titleRef.current.value = '';
+        descriptionRef.current.value = '';
+        priceRef.current.value = '';
+        stockRef.current.value = '';
     }
+
+
     return(
 <section className="page"style={{display:display}}>
 <div className="panel form-panel">
@@ -63,10 +91,16 @@ function AddProductPage({display,setPage}){
                 <span>Category</span>
                 <select
                     ref={categoryRef}>
-                    <option>Sneakers</option>
-                    <option>Boots</option>
-                    <option>Sandals</option>
-                    <option>Formal</option>
+                    <option>women</option>
+                    <option>kids</option>
+                </select>
+                <span>Type</span>
+                <select
+                    ref={typeRef}>
+                    <option>sneakers</option>
+                    <option>boots</option>
+                    <option>sandals</option>
+                    <option>formal</option>
                 </select>
             </label>
         </div>
@@ -87,11 +121,9 @@ function AddProductPage({display,setPage}){
             className="btn-ghost">
             Cancel
         </a>
-        <button className={`btn-ghost ${IsavilableToSave?"save":"danger"}`}
-            onClick={()=>{
-                validValue()
-            }}>
-            Save product
+        <button className = "btn-ghost save"
+            onClick={handleSave}>
+            {!isEditType? "Save Product" : "Edit Product"}
         </button>
     </div>
 </div>
