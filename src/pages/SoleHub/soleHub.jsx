@@ -7,6 +7,7 @@ import InventoryPage from './inventory.jsx';
 import AnalyticsPage from './analytics.jsx';
 import CouponsPage from './coupons.jsx';
 import ReviewsPage from './reviews.jsx';
+import SettingsPage from './settings.jsx';
 function SoleHubPage(){
     return (
 <div className="app-shell">
@@ -19,6 +20,7 @@ function SoleHubPage(){
     <AnalyticsPage/>
     <CouponsPage/>
     <ReviewsPage/>
+    <SettingsPage/>
   </main>
 </div>
 )

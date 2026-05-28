@@ -528,6 +528,9 @@
 .btn-ghost.danger{ 
   color:#B4453A; 
 }
+.btn-ghost.save{ 
+  color:#48b43a; 
+}
 
 .review-list{ 
   display:flex; 
@@ -569,6 +572,77 @@
 }
 
 
+/* ________ APP SHELL ________ */
+/* ________ Settings   ________ */
+
+.settings-grid{
+  display:grid; 
+  grid-template-columns:260px 1fr; 
+  gap:16px; 
+  align-items:start; 
+}
+.profile-panel{ 
+  display:flex; 
+  flex-direction:column; 
+  align-items:center;
+  justify-content: center;
+  gap:12px; 
+  text-align:center;
+  height:100% ;
+}
+.settings-avatar{ 
+  width:88px; 
+  height:88px; 
+  border-radius:50%; 
+  object-fit:cover; 
+}
+.settings-form{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:16px;
+}
+.field{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:6px; 
+  font-size:12px; 
+  color:var(--taupe); 
+}
+.field span, 
+.field-label{ 
+  font-weight:600; 
+  color:var(--brown); 
+}
+.field input, 
+.field select,
+.field textarea{ 
+  background:var(--white); 
+  border:1px solid var(--stone); 
+  border-radius:8px; 
+  padding:11px 13px; 
+  color:var(--charcoal); 
+  font-family:inherit; 
+}
+.field input:focus,
+.field select:focus, 
+.field textarea:focus{ 
+  border-color:var(--rose);
+}
+
+.switch-row{ 
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between; 
+  font-size:13px; 
+  font-weight:600; 
+  color:var(--brown); 
+}
+.switch{ 
+  width:38px; 
+  height:22px; 
+  accent-color:var(--rose); 
+}
+
 
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
@@ -576,6 +650,7 @@
   .stat-grid{ grid-template-columns:repeat(2,1fr); }
 }
 @media (max-width:820px){
+  .settings-grid{ grid-template-columns: 1fr;}
   .sidebar{ width:74px; }
   .logo-word, .nav-item span{ display:none; }
   .sidebar-logo{ justify-content:center; }
