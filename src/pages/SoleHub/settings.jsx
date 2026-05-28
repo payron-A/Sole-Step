@@ -1,6 +1,6 @@
-function SettingsPage(){
+function SettingsPage({display}){
     return (
-<>
+<section className="page"style={{display:display}}>
 <div className="settings-grid">
     <div className="panel profile-panel">
         <svg    className="settings-avatar"
@@ -45,7 +45,6 @@ function SettingsPage(){
         </button>
     </div>
 </div>
-</>  
-)
+</section>)
 }
 export default SettingsPage;

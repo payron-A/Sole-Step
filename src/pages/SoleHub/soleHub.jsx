@@ -14,59 +14,40 @@ import AddProductPage from './addProduct.jsx';
 import NotificationPage from './notification.jsx';
 import { useState } from 'react';
 function SoleHubPage(){
-  const [page,setPage] = useState("Dashboard");
+  const [page,setPage] = useState("Log in");
     return (
 <div className="app-shell">
-  <Sidebar changePage={setPage}/>
+  {page === "Log in"?
+    "":<Sidebar setPage={setPage}currentPage={page}/>
+  }
   <main className="main-area">
-    
     <div className="content">
-      
-      <section className="page">
-        <Topbar currentPage={page}/>
-        <div style={{display:page === "Dashboard"?"block":"none"}}>
-          <DashboardPage/>
-        </div> 
-        <div style={{display:page === "Products"?"block":"none"}}>
-          <ProductsPage/>
-        </div> 
-        <div style={{display:page === "Customers"?"block":"none"}}>
-          <CustomersPage />
-        </div> 
-        <div style={{display:page === "Inventory"?"block":"none"}}>
-          <InventoryPage/>
-        </div> 
-        <div style={{display:page === "Analytics"?"block":"none"}}>
-          <AnalyticsPage/>
-        </div> 
-        <div style={{display:page === "Coupons"?"block":"none"}}>
-          <CouponsPage/>
-        </div> 
-        <div style={{display:page === "Reviews"?"block":"none"}}>
-          <ReviewsPage/>
-        </div> 
-        <div style={{display:page === "Settings"?"block":"none"}}>
-          <SettingsPage/>
-        </div>
-        <div style={{display:page === "Log in"?"block":"none"}}>
-          <LoginPage/>
-        </div>
-        <div style={{display:page === "Add Product"?"block":"none"}}>
-          <AddProductPage/>
-        </div>
-        <div style={{display:page === "Notification"?"block":"none"}}>
-          <NotificationPage/>
-        </div>
-        
-        
-        
-        
-        
-        
-        
-      </section>
+          {page === "Log in"?
+            "":<Topbar currentPage={page}/>
+            }
+          <DashboardPage display={
+            page === "Dashboard"?"block":"none"}/>
+          <ProductsPage display={
+            page === "Products"?"block":"none"}/>
+          <CustomersPage display={
+            page === "Customers"?"block":"none"}/> 
+          <InventoryPage display={
+            page === "Inventory"?"block":"none"}/>
+          <AnalyticsPage display={
+            page === "Analytics"?"block":"none"}/>
+          <CouponsPage display={
+            page === "Coupons"?"block":"none"}/>
+          <ReviewsPage display={
+            page === "Reviews"?"block":"none"}/>
+          <SettingsPage display={
+            page === "Settings"?"block":"none"}/>
+          <LoginPage display={
+            page === "Log in"?"block":"none"}/>
+          <AddProductPage display={
+            page === "Add Product"?"block":"none"}/>
+          <NotificationPage display={
+            page === "Notification"?"block":"none"}/>
     </div>
-   
   </main>
 </div>
 )

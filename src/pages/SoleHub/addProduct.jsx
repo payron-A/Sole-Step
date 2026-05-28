@@ -1,6 +1,6 @@
-function AddProductPage(){
+function AddProductPage({display}){
     return(
-
+<section className="page"style={{display:display}}>
 <div className="panel form-panel">
     <div className="form-tabs">
         <span className="form-tab active">
@@ -63,6 +63,7 @@ function AddProductPage(){
         </a>
     </div>
 </div>
+</section>
 )
 }
 export default AddProductPage;

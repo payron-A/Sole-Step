@@ -1,7 +1,9 @@
 
-function CustomersPage(){    
+function CustomersPage({display}){    
     return ( 
-<>
+
+
+<section className="page"style={{display:display}}>
 <div className="toolbar">
     <div className="search-box">
         <svg viewBox="0 0 24 24" fill="none" 
@@ -61,7 +63,7 @@ function CustomersPage(){
         </div>
     </div>
 </div>
-</>
+</section>
 )
 }
 export default CustomersPage;

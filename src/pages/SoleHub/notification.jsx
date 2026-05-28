@@ -1,6 +1,6 @@
-function NotificationPage(){
+function NotificationPage({display}){
     return (
-<>
+<section className="page"style={{display:display}}>
 <ul className="notif-list">
     <li className="notif-card">
         <span className="notif-dot"></span>
@@ -27,7 +27,7 @@ function NotificationPage(){
         <small>2 hours ago</small>
     </li>
 </ul>
-</>
+</section>
 )
 }
 export default NotificationPage;

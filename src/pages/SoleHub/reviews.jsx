@@ -1,6 +1,6 @@
-function ReviewsPage(){
+function ReviewsPage({display}){
     return(
-<>
+<section className="page"style={{display:display}}>
 <div className="toolbar">
     <div className="search-box">
         <svg viewBox="0 0 24 24" fill="none" 
@@ -32,8 +32,7 @@ function ReviewsPage(){
             <button className="btn-ghost danger">Reject</button>
         </div>
     </li>
-</ul>
-</>    
-)
+</ul>  
+</section>)
 }
 export default ReviewsPage;

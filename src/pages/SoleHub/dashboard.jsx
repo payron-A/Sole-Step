@@ -1,10 +1,11 @@
 
 import Panel from '../../components/soleHubComponents/panel';
-function DashboardPage(){
+function DashboardPage({display}){
     return (
-<>
-  <section className="page"
-           style={{display:"flex",flexDirection:"column",gap:"22px"}}>
+
+<section className="page"style={{display:display}}>
+  <div
+    style={{display:"flex",flexDirection:"column",gap:"22px"}}>
     <div className="stat-grid">
       <div className="stat-card">
         <span className="stat-label">Revenue</span>
@@ -62,8 +63,8 @@ function DashboardPage(){
           </ul>
       </div>
     </div>
-  </section>
-</>
+  </div>
+</section>
     )
 }
 export default DashboardPage;

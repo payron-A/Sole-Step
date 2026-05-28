@@ -1,6 +1,6 @@
-function ProductsPage(){
+function ProductsPage({display}){
     return(
-<>
+<section className="page"style={{display:display}}>
 <div className="toolbar">
     <div className="search-box">
         <svg viewBox="0 0 24 24" fill="none" 
@@ -101,7 +101,6 @@ function ProductsPage(){
         </tbody>
     </table>
 </div>
-</>
-)
+</section>)
 }
 export default ProductsPage;

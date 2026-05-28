@@ -1,7 +1,8 @@
 import Panel from "../../components/soleHubComponents/panel";
 
-function AnalyticsPage(){
+function AnalyticsPage({display}){
     return(      
+<section className="page"style={{display:display}}>
 <div className="dash-grid">
     <div className="panel sales-panel">
         <div className="panel-head">
@@ -74,6 +75,7 @@ function AnalyticsPage(){
         </div>
     </div>
 </div>
+</section>
 )
 }
 export default AnalyticsPage;
