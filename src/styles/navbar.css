@@ -20,10 +20,6 @@ nav{
   color:var(--charcoal);
   text-decoration:none;
 }
-.nav-logo em{
-    color:var(--rose-deep);
-    font-style:normal;
-}
 .nav-links{
     display:flex;
     gap:2rem;
@@ -118,7 +114,7 @@ nav{
     translate:0 -6px;
     background-color:var(--rose-deep);
 }
-@media (max-width:850px) {
+@media (max-width:910px) {
     .nav-menu{
         display: flex;
         z-index: 1001;
