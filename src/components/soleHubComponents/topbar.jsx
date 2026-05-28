@@ -18,8 +18,13 @@ function Topbar({currentPage}){
       </svg>
     </button>
     <div className="avatar-chip">
-      <img src="https://i.pravatar.cc/64?img=13" alt=""/>
-      <span>Admin</span>
+      <svg className="img"
+          viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" strokeWidth="1.8" 
+          strokeLinecap="round"><circle cx="12" cy="8" 
+          r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/>
+      </svg>
+      <span>admin</span>
     </div>
   </div>
 </header>

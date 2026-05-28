@@ -136,23 +136,22 @@
   background:var(--rose); 
 }
 .avatar-chip{
-  background-color: var(--taupe);
+  background-color: var(--gold);
   display:flex;
-  align-items:center; 
+  align-items:center;
   gap:8px; 
   border: 1px solid var(--border);
   color: var(--white);
   text-transform: uppercase;
-  padding:4px 10px 4px 4px;
+  padding:3px 10px 3px 4px;
   border-radius: 20px;
   letter-spacing: 0.5px;
   z-index: 10;
   font-size:12px; 
   font-weight:700;
 }
-.avatar-chip img{ 
-  width:28px; 
-  height:28px; 
+.avatar-chip svg{ 
+  width:24px;height: 24px;
   border-radius:50%; 
   object-fit:cover; 
 }

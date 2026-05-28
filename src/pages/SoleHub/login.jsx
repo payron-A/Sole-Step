@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Button from '../../components/button.jsx';
 import { Link } from 'react-router-dom';
 
-function LoginPage({display,setPage,setAdmin}){
+function LoginPage({display,setPage,setAdmin,setIsLogin}){
 
 // _____ STATE _____
 // _____ Inputs Value 
@@ -24,7 +24,11 @@ function LoginPage({display,setPage,setAdmin}){
 
 // _____ Change Page && Get Admin Info after success LogIn
     function goToDashboard(){
+      emailRef.current.value = "";
+      passwordRef.current.value = "";
+      setErrorMsg(null)
       setAdmin(currentAdmin);
+      setIsLogin(true);
       setPage("Dashboard");
     }
 
@@ -37,7 +41,6 @@ function LoginPage({display,setPage,setAdmin}){
           setCurrentAdmin(
             admins.find(admin => admin.email === emailIpt)
           )
-          console.log(currentAdmin)
           if(!currentAdmin)return setErrorMsg("Check you Email");
           if(emailIpt === currentAdmin.email){
             if(passwordIpt === currentAdmin.password){

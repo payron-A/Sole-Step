@@ -16,20 +16,40 @@ import { useEffect, useState } from 'react';
 function SoleHubPage(){
 
   // _____ STATE _____
-  // _____ Change Page State
-  const [page,setPage] = useState("Log in");
+  // _____ Current Admin
+  const [admin,setAdmin] = useState(
+      JSON.parse(localStorage.getItem("currentAdmin"))
+  );
 
-// _____ Current Admin
-  const [admin,setAdmin] = useState();
+  // _____ Change Page State  
+  const [isLogin,setIsLogin] = useState(
+      localStorage.getItem("isLogin") || false
+  )
+  const [page,setPage] = useState(isLogin && admin?
+    "Dashboard":"Log in"
+  );
+
+  // _____ Products
+  
+
+  useEffect(()=>{
+    localStorage.setItem("isLogin",isLogin);
+    localStorage.setItem("currentAdmin",JSON.stringify(admin));
+  },[admin][isLogin])
     return (
 <div className="app-shell">
   {page === "Log in"?
-    "":<Sidebar setPage={setPage}currentPage={page}/>
+    "":
+    <Sidebar setPage={setPage}
+             currentPage={page}
+             setIsLogin={setIsLogin}
+             setAdmin={setAdmin}/>
   }
   <main className="main-area">
     <LoginPage display={page === "Log in"?"block":"none"}
                setPage={setPage}
-               setAdmin={setAdmin}/>
+               setAdmin={setAdmin}
+               setIsLogin={setIsLogin}/>
     <div className="content">
           {page === "Log in"?
             "":<Topbar currentPage={page}/>

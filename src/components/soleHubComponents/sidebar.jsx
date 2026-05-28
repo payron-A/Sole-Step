@@ -1,5 +1,5 @@
 
-function Sidebar({setPage,currentPage}){
+function Sidebar({setPage,currentPage,setIsLogin,setAdmin}){
   function isActive(page){
     return page === currentPage;
   }
@@ -95,7 +95,12 @@ function Sidebar({setPage,currentPage}){
   </ul>
   <div className="sidebar-foot">
     <a className="nav-item" 
-        onClick={()=>setPage("Log out")}>
+        onClick={()=>{
+          setPage("Log in");
+          setIsLogin(false);
+          setAdmin(null);
+          
+        }}>
       <svg viewBox="0 0 24 24" fill="none" 
           stroke="currentColor" strokeWidth="1.8" 
           strokeLinecap="round" strokeLinejoin="round">
