@@ -1,5 +1,5 @@
 
-import '/src/styles/filterbar.css';
+import '../../styles/filterbar.css';
 import { useState } from 'react';
 function FilterBar({filter,products,filtersize,filterprice,filtercolor}){
     const [activeLink,setActiveLink] = useState("All Product");

@@ -1,8 +1,7 @@
 import { originProducts } from "../js/products.jsx";
-import FilterBar from "/src/components/filter/filterbar.jsx";
-import TopFilter from "/src/components/filter/topFilter.jsx";
-import Card from "/src/components/card.jsx";
-import Footer from '../components/footer.jsx'
+import FilterBar from "../components/filter/filterbar.jsx";
+import TopFilter from "../components/filter/topFilter.jsx";
+import Card from "../components/card.jsx";
 import { useState } from "react";
 function WomenPage(){
     const womenProduct = [...originProducts].filter(pro=>pro.cat == "women")

@@ -143,3 +143,9 @@ aside{
 .breadcrumb .bc-link:hover{
     color:var(--charcoal);
 }
+@media (max-width:540px){
+    aside{
+        width: 150px;
+        padding: .5rem .5rem;
+    }
+}

@@ -1,6 +1,6 @@
 import { originProducts } from "../js/products.jsx";
-import TopFilter from "/src/components/filter/topFilter.jsx";
-import Card from "/src/components/card.jsx";
+import TopFilter from "../components/filter/topFilter.jsx";
+import Card from "../components/card.jsx";
 import { useState } from "react";
 import PageHeader from "../components/pgHeader.jsx";
 function SalePage(){

@@ -26,6 +26,10 @@
     text-decoration: none;
     transition: .5s;
 }
+::selection{
+    background-color: var(--brown);
+    color:var(--white);
+}
 h1,h2,h3{
     font-family: var(--title-font);
 }
