@@ -1,8 +1,13 @@
-
 import Panel from '../../components/soleHubComponents/panel';
-import { originProducts } from '../../js/products';
-import {allCustomers} from '../../js/customers.js';
-function DashboardPage({display,setPage}){
+import { getRevenue, getOrderCount, getBestSelling } from '../../js/stats';
+
+function DashboardPage({display,setPage,products,customers}){
+
+    const revenue = getRevenue(customers);
+    const orders = getOrderCount(customers);
+    const bestSelling = getBestSelling(products, 2);
+    const lowStockCount = products.filter(p => +p.stock < 5).length;
+
     return (
 
 <section className="page"style={{display:display}}>
@@ -11,24 +16,23 @@ function DashboardPage({display,setPage}){
     <div className="stat-grid">
       <div className="stat-card">
         <span className="stat-label">Revenue</span>
-        <span className="stat-value">$18,540</span>
-        <span className="stat-delta up">+12.4%</span>
+        <span className="stat-value">${revenue.toLocaleString()}</span>
       </div>
-    <div className="stat-card">
-      <span className="stat-label">Orders</span>
-      <span className="stat-value">243</span>
-      <span className="stat-delta up">+6.1%</span>
-    </div>
-    <div className="stat-card">
-      <span className="stat-label">Customers</span>
-      <span className="stat-value">{allCustomers.length}</span>
-      <span className="stat-delta up">+3.8%</span>
-    </div>
-    <div className="stat-card">
-      <span className="stat-label">Products</span>
-      <span className="stat-value">{originProducts.length}</span>
-      <span className="stat-delta down">-1.2%</span>
-    </div>
+      <div className="stat-card">
+        <span className="stat-label">Orders</span>
+        <span className="stat-value">{orders}</span>
+      </div>
+      <div className="stat-card">
+        <span className="stat-label">Customers</span>
+        <span className="stat-value">{customers.length}</span>
+      </div>
+      <div className="stat-card">
+        <span className="stat-label">Products</span>
+        <span className="stat-value">{products.length}</span>
+        {lowStockCount > 0 &&
+            <span className="stat-delta down">{lowStockCount} low stock</span>
+        }
+      </div>
     </div>
     <div className="dash-grid">
       <Panel x={[200,140,150,60,80,40]}/>
@@ -40,30 +44,23 @@ function DashboardPage({display,setPage}){
             </a>
           </div>
           <ul className="mini-list">
-            <li>
-              <span className="mini-thumb">
-                <svg viewBox="0 0 24 24" fill="none" 
-                    stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>
-                </svg>
-              </span>
-              <div>
-                <b>Nike Air Max</b>
-                <small>3 left</small>
-              </div>
-                <span className="mini-val">$345</span>
-            </li>
-            <li>
-              <span className="mini-thumb dot">
-                <svg viewBox="0 0 24 24" fill="none" 
-                    stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>
-                </svg>
-              </span>
-              <div>
-                <b>Nike Air Max</b>
-                <small>3 left</small>
-              </div>
-                <span className="mini-val">$345</span>
-            </li>
+            {bestSelling.map(product =>
+              <li key={product.id}>
+                <span className="mini-thumb">
+                  <svg viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>
+                  </svg>
+                </span>
+                <div>
+                  <b>{product.name}</b>
+                  <small>{product.stock ?? 0} left</small>
+                </div>
+                  <span className="mini-val">${product.price}</span>
+              </li>
+            )}
+            {bestSelling.length === 0 &&
+              <li><div><b>No products yet</b></div></li>
+            }
           </ul>
       </div>
     </div>

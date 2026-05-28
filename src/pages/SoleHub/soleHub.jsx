@@ -1,43 +1,81 @@
 import '../../styles/soleHub.css';
-import DashboardPage from './dashboard.jsx';
-import Topbar from '../../components/soleHubComponents/topbar.jsx';
-import ProductsPage from './products.jsx';
-import  CustomersPage from './customers.jsx'
+import { useEffect, useState } from 'react';
+
 import Sidebar from '../../components/soleHubComponents/sidebar';
+import Topbar from '../../components/soleHubComponents/topbar.jsx';
+
+import LoginPage from './login.jsx';
+import DashboardPage from './dashboard.jsx';
+import ProductsPage from './products.jsx';
+import AddProductPage from './addProduct.jsx';
+import CustomersPage from './customers.jsx';
 import InventoryPage from './inventory.jsx';
 import AnalyticsPage from './analytics.jsx';
 import CouponsPage from './coupons.jsx';
 import ReviewsPage from './reviews.jsx';
 import SettingsPage from './settings.jsx';
-import LoginPage from './login.jsx';
-import AddProductPage from './addProduct.jsx';
 import NotificationPage from './notification.jsx';
-import { useEffect, useState } from 'react';
+
 import { originProducts } from '../../js/products';
+import { allCustomers } from '../../js/customers';
+import { initialCoupons } from '../../js/coupons';
+import { initialReviews } from '../../js/reviews';
+import { loadOrSeed, save } from '../../js/storage';
+
+const defaultSettings = JSON.parse(
+          localStorage.getItem("currentAdmin")
+)
+
 function SoleHubPage(){
 
-  // _____ STATE _____
-  // _____ Current Admin
+  // _____ AUTH _____
   const [admin,setAdmin] = useState(
       JSON.parse(localStorage.getItem("currentAdmin"))
   );
-
-  // _____ Change Page State  
   const [isLogin,setIsLogin] = useState(
-      localStorage.getItem("isLogin") || false
-  )
-  const [page,setPage] = useState(isLogin && admin?
-    "Dashboard":"Log in"
+      localStorage.getItem("isLogin") === "true"
   );
 
-  // _____ Products
-  const [products,setProducts] = useState(
-    JSON.parse(localStorage.getItem("products")) || originProducts);
-  useEffect(()=>{
-    localStorage.setItem("products",JSON.stringify(products))
-  },[products])
+  const [page,setPage] = useState(isLogin && admin ? "Dashboard" : "Log in");
 
-  function manageProduct(newProduct){
+  // _____ Admins (credentials). Seeded once from /admin.json, then fully
+  // local so a password change actually sticks on the next login.
+  const [admins,setAdmins] = useState(()=>{
+    const saved = localStorage.getItem("admins");
+    return saved ? JSON.parse(saved) : null;
+  });
+  useEffect(()=>{
+    if(admins !== null) return; // already loaded from storage
+    fetch("/admin.json")
+      .then(rs => rs.ok ? rs.json() : Promise.reject())
+      .then(data => { setAdmins(data); save("admins", data); })
+      .catch(() => setAdmins([]));
+  },[admins]);
+
+  function changePassword(currentPassword, newPassword){
+    if(!admin) return { ok:false, message:"You're not logged in." };
+    if(admin.password !== currentPassword){
+      return { ok:false, message:"Current password is incorrect." };
+    }
+    const updatedAdmins = admins.map(a =>
+      a.email === admin.email ? { ...a, password:newPassword } : a
+    );
+    setAdmins(updatedAdmins);
+    save("admins", updatedAdmins);
+    const updatedAdmin = { ...admin, password:newPassword };
+    setAdmin(updatedAdmin);
+    save("currentAdmin", updatedAdmin);
+    return { ok:true, message:"Password updated." };
+  }
+
+  // _____ Products _____
+  const [products,setProducts] = useState(()=>loadOrSeed("products", originProducts));
+  // _____ Edit / Add Products
+
+  const [isEditType,setIsEditType] = useState(false);
+  const [editPro,setEditPro] = useState(null);
+  const [editId,setEditId] = useState(null);
+  function manageProduct(newProduct){{
     if(!isEditType){
       setProducts(prev => [...prev, { id: Date.now(), ...newProduct }]);
     }else{
@@ -49,29 +87,78 @@ function SoleHubPage(){
     setEditPro(null);
     setIsEditType(false);
   }
-  
+}
+  function removeProduct(id){
+    setProducts(prev => prev.filter(product => product.id !== id));
+  }
+  function restockProduct(id, amount = 10){
+    setProducts(prev => prev.map(p =>
+      p.id === id ? { ...p, stock: (+p.stock || 0) + amount } : p
+    ));
+  }
+
+  // _____ Customers _____
+  const [customers,setCustomers] = useState(()=>loadOrSeed("customers", allCustomers));
+
+  function addCustomer(newCustomer){
+    setCustomers(prev => [...prev, { id: Date.now(), orders:0, totalSpent:0, status:"active", ...newCustomer }]);
+  }
+  function removeCustomer(id){
+    setCustomers(prev => prev.filter(c => c.id !== id));
+  }
+  function toggleCustomerStatus(id){
+    setCustomers(prev => prev.map(c =>
+      c.id === id ? { ...c, status: c.status === "active" ? "blocked" : "active" } : c
+    ));
+  }
+
+  // _____ Coupons _____
+  const [coupons,setCoupons] = useState(()=>loadOrSeed("coupons", initialCoupons));
+
+  function addCoupon(newCoupon){
+    setCoupons(prev => [...prev, { id: Date.now(), ...newCoupon }]);
+  }
+  function removeCoupon(id){
+    setCoupons(prev => prev.filter(c => c.id !== id));
+  }
+
+  // _____ Reviews _____
+  const [reviews,setReviews] = useState(()=>loadOrSeed("reviews", initialReviews));
+
+  function setReviewStatus(id, status){
+    setReviews(prev => prev.map(r => r.id === id ? { ...r, status } : r));
+  }
+
+  // _____ Settings _____
+  const [settings,setSettings] = useState(()=>loadOrSeed("settings", defaultSettings));
+
+  // _____ Persist every slice whenever it changes _____
+  useEffect(()=>{ save("products", products) },[products]);
+  useEffect(()=>{ save("customers", customers) },[customers]);
+  useEffect(()=>{ save("coupons", coupons) },[coupons]);
+  useEffect(()=>{ save("reviews", reviews) },[reviews]);
+  useEffect(()=>{ save("settings", settings) },[settings]);
   useEffect(()=>{
-    localStorage.setItem("isLogin",isLogin);
-    localStorage.setItem("currentAdmin",JSON.stringify(admin));
-  },[admin][isLogin])
-  // _____ Edit Product
-  const [isEditType,setIsEditType] = useState(false);
-  const [editPro,setEditPro] = useState(null);
-  const [editId,setEditId] = useState(null);
-    return (
+    localStorage.setItem("isLogin", isLogin);
+    localStorage.setItem("currentAdmin", JSON.stringify(admin));
+  },[admin, isLogin]);
+
+  const isFullScreenPage = page === "Log in" || page === "Add Product";
+
+  return (
 <div className="app-shell">
-  {page === "Log in" || page === "Add Product"?
-    "":
+  {!isFullScreenPage &&
     <Sidebar setPage={setPage}
              currentPage={page}
              setIsLogin={setIsLogin}
              setAdmin={setAdmin}/>
   }
   <main className="main-area">
-    <LoginPage display={page === "Log in"?"block":"none"}
+    <LoginPage display={page === "Log in" ? "block" : "none"}
                setPage={setPage}
                setAdmin={setAdmin}
-               setIsLogin={setIsLogin}/>
+               setIsLogin={setIsLogin}
+               admins={admins}/>
 
     <AddProductPage 
               setPage={setPage}
@@ -82,44 +169,60 @@ function SoleHubPage(){
                 page === "Add Product"?"block":"none"}/>
 
     <div className="content">
-          {page === "Log in" || page === "Add Product"?
-            "":<Topbar currentPage={page}
-                       setPage={setPage}
-                       products={products}/>
-            }
-          <DashboardPage 
-            setPage={setPage}
-            display={
-              page === "Dashboard"?"block":"none"}/>
-          <ProductsPage 
-            setPage={setPage}
-            products={products}
-            setProducts={setProducts}
-            setIsEditType={setIsEditType}
-            setEditPro={setEditPro}
-            setEditId={setEditId}
-            display={
-              page === "Products"?"block":"none"}
-            />
-          <CustomersPage display={
-            page === "Customers"?"block":"none"}/> 
-          <InventoryPage display={
-            page === "Inventory"?"block":"none"}/>
-          <AnalyticsPage display={
-            page === "Analytics"?"block":"none"}/>
-          <CouponsPage display={
-            page === "Coupons"?"block":"none"}/>
-          <ReviewsPage display={
-            page === "Reviews"?"block":"none"}/>
-          <SettingsPage display={
-            page === "Settings"?"block":"none"}/>
-          <NotificationPage 
-            products={products}
-            display={
-              page === "Notification"?"block":"none"}/>
+      {!isFullScreenPage &&
+        <Topbar currentPage={page} setPage={setPage} products={products}/>
+      }
+
+      <DashboardPage setPage={setPage}
+                     products={products}
+                     customers={customers}
+                     display={page === "Dashboard" ? "block" : "none"}/>
+
+      <ProductsPage  setPage={setPage}
+                     products={products}
+                     removeProduct={removeProduct}
+                     setProducts={setProducts}
+                     setIsEditType={setIsEditType}
+                     setEditPro={setEditPro}
+                     setEditId={setEditId}
+                     display={
+                       page === "Products"?"block":"none"}
+                     />
+
+      <CustomersPage customers={customers}
+                     addCustomer={addCustomer}
+                     removeCustomer={removeCustomer}
+                     toggleCustomerStatus={toggleCustomerStatus}
+                     display={page === "Customers" ? "block" : "none"}/>
+
+      <InventoryPage products={products}
+                     setPage={setPage}
+                     restockProduct={restockProduct}
+                     display={page === "Inventory" ? "block" : "none"}/>
+
+      <AnalyticsPage products={products}
+                     customers={customers}
+                     display={page === "Analytics" ? "block" : "none"}/>
+
+      <CouponsPage coupons={coupons}
+                   addCoupon={addCoupon}
+                   removeCoupon={removeCoupon}
+                   display={page === "Coupons" ? "block" : "none"}/>
+
+      <ReviewsPage reviews={reviews}
+                   setReviewStatus={setReviewStatus}
+                   display={page === "Reviews" ? "block" : "none"}/>
+
+      <SettingsPage settings={settings}
+                    setSettings={setSettings}
+                    changePassword={changePassword}
+                    display={page === "Settings" ? "block" : "none"}/>
+
+      <NotificationPage products={products}
+                        display={page === "Notification" ? "block" : "none"}/>
     </div>
   </main>
 </div>
-)
+  )
 }
 export default SoleHubPage;

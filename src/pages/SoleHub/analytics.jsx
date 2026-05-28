@@ -1,7 +1,25 @@
 import Panel from "../../components/soleHubComponents/panel";
+import { getTypeBreakdown, getRevenue } from "../../js/stats";
 
-function AnalyticsPage({display}){
-    return(      
+const DONUT_COLORS = ["var(--rose)","var(--charcoal)",
+                      "var(--stone)","var(--taupe)"];
+const CIRCUMFERENCE = 314; // 2 * π * r(50), matches the SVG below
+
+function AnalyticsPage({display,products,customers}){
+
+    const breakdown = getTypeBreakdown(products).slice(0,4);
+    const revenue = getRevenue(customers);
+
+    // Build cumulative stroke-dash offsets so each donut arc starts
+    // right where the previous one ended.
+    const arcs = breakdown.reduce((acc, entry, i) => {
+        const offsetSoFar = acc.reduce((sum,a)=> sum + a.length, 0);
+        const length = (entry.percent/95) * CIRCUMFERENCE;
+        acc.push({ ...entry, length, offset: -offsetSoFar, color: DONUT_COLORS[i % DONUT_COLORS.length] });
+        return acc;
+    }, []);
+
+    return(
 <section className="page"style={{display:display}}>
 <div className="dash-grid">
     <div className="panel sales-panel">
@@ -15,63 +33,58 @@ function AnalyticsPage({display}){
             <h3>Revenue</h3>
         </div>
         <div className="bar-chart">
-            <div className="bar" style={{height:"40%"}}></div>
-            <div className="bar" style={{height:"65%"}}></div>
-            <div className="bar" style={{height:"50%"}}></div>
-            <div className="bar" style={{height:"80%"}}></div>
-            <div className="bar" style={{height:"55%"}}></div>
-            <div className="bar" style={{height:"90%"}}></div>
+            {customers.map(c => {
+                const maxSpent = Math.max(...customers.map(x=>+x.totalSpent||0), 1);
+                const height = Math.max(8, Math.round(((+c.totalSpent||0)/maxSpent)*100));
+                return <div className="bar" key={c.id} title={`${c.name}: $${c.totalSpent||0}`} style={{height:`${height}%`}}></div>
+            })}
         </div>
+        <small style={{color:"var(--taupe)"}}>Total: ${revenue.toLocaleString()}</small>
     </div>
     <div className="panel">
         <div className="panel-head">
             <h3>Best categories</h3>
         </div>
         <ul className="mini-list">
-            <li>
-                <span className="mini-thumb dot">1</span>
-                <div>
-                    <b>Sneakers</b>
-                    <small>62% of sales</small>
-                </div>
-            </li>
-            <li>
-                <span className="mini-thumb dot">2</span>
-                <div>
-                    <b>Boots</b>
-                    <small>30% of sales</small>
-                </div>
-            </li>
-            <li>
-                <span className="mini-thumb dot">3</span>
-                <div>
-                    <b>Sandals</b>
-                    <small>8% of sales</small>
-                </div>
-            </li>
+            {breakdown.map((entry,i)=>
+                <li key={entry.type}>
+                    <span className="mini-thumb dot">{i+1}</span>
+                    <div>
+                        <b style={{textTransform:"capitalize"}}>{entry.type}</b>
+                        <small>{entry.percent}% of catalog</small>
+                    </div>
+                </li>
+            )}
+            {breakdown.length === 0 &&
+                <li>
+                    <div>
+                        <b>No products yet</b>
+                    </div>
+                </li>
+            }
         </ul>
     </div>
     <div className="panel donut-panel">
         <div className="panel-head">
-            <h3>Products</h3></div>
-            <svg viewBox="0 0 120 120" className="donut">
-                <circle cx="60" cy="60" r="50" fill="none" stroke="var(--stone)" strokeWidth="16"/>
-                <circle cx="60" cy="60" r="50" fill="none" stroke="var(--rose)" strokeWidth="16" strokeDasharray="196 314" strokeLinecap="round"/>
-                <circle cx="60" cy="60" r="50" fill="none" stroke="var(--charcoal)" strokeWidth="16" strokeDasharray="94 314" strokeDashoffset="-196" strokeLinecap="round"/>
-            </svg>
-            <div className="donut-legend">
-                <span>
-                    <i style={{background:"var(--rose)"}}></i>
-                    Sneakers 62%
+            <h3>Products</h3>
+        </div>
+        <svg viewBox="0 0 120 120" className="donut">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--stone)" strokeWidth="16"/>
+            {arcs.map(arc =>
+                <circle key={arc.type} cx="60" cy="60" r="50" fill="none"
+                    stroke={arc.color} strokeWidth="16"
+                    strokeDasharray={`${arc.length} ${CIRCUMFERENCE}`}
+                    strokeDashoffset={arc.offset}
+                    strokeLinecap="round"/>
+            )}
+        </svg>
+        <div className="donut-legend">
+            {arcs.map(arc =>
+                <span key={arc.type}>
+                    <i style={{background:arc.color}}></i>
+                    <span style={{textTransform:"capitalize"}}>{arc.type}</span> {arc.percent}%
                 </span>
-                <span>
-                    <i style={{background:"var(--charcoal)"}}></i>
-                    Boots 30%
-                </span>
-                <span>
-                    <i style={{background:"var(--stone)"}}></i>
-                    Other 8%
-                </span>
+            )}
         </div>
     </div>
 </div>

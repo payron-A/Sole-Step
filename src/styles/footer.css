@@ -3,7 +3,7 @@ footer{
     color:rgba(255,255,255,.65);
     padding:1rem;
     position: relative;
-    z-index:100;
+    z-index:100000000;
 }
 .footer-grid{
     display:grid;

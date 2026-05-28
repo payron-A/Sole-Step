@@ -849,40 +849,26 @@
   font-size:11px; 
   white-space:nowrap; 
 }
+.notif-card .icon-btn{
+  width:28px;
+  height:28px;
+  flex-shrink:0;
+}
 
 
 /* ________ Login ________ */
 /* ________ Error Message   ________ */
 
-.error {
-  padding: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  background: red;
-  border-radius: 8px;
-  box-shadow: 0px 0px 5px -3px #111;
-  margin-top: 12px;
-  animation: fadeUp .3s;
-}
-
 .error-icon{
   width: 20px;
   height: 20px;
   transform: translateY(-2px);
-  margin-right: 8px;
 }
 
 .error-icon path {
-  fill: #fff;
+  fill: #c0392b;
 }
 
-.error-title {
-  font-weight: 500;
-  font-size: 14px;
-  color: #fff;
-}
 
 /* ________ Products ________ */
 /* ________ Hidden Filterbar   ________ */

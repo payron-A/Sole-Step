@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { originProducts } from "../../js/products";
 import TopFilter from '../../components/filter/topFilter';
 
-function ProductsPage({display,setPage,products,setProducts,setIsEditType,setEditPro,setEditId}){
+function ProductsPage({display,setPage,products,setProducts,removeProduct,setIsEditType,setEditPro,setEditId}){
 
 // _____ STATE _____
 // _____ Products when search 
@@ -46,8 +46,6 @@ function ProductsPage({display,setPage,products,setProducts,setIsEditType,setEdi
                 break;
         }
     }
-
-
     return(
 <section className="page"style={{display:display}}>
     <div className="toolbar">
@@ -120,7 +118,7 @@ function ProductsPage({display,setPage,products,setProducts,setIsEditType,setEdi
                     </td>
                     <td>
                         <div className="row-actions">
-                            <button className="icon-btn"
+                            <button className="icon-btn" 
                                     title="Edit"
                                     onClick={()=>{
                                         setIsEditType(true)
@@ -133,16 +131,13 @@ function ProductsPage({display,setPage,products,setProducts,setIsEditType,setEdi
                                 </svg>
                             </button>
                             <button className="icon-btn"
-                                    title="Remove"
+                                    title="Remove product"
                                     onClick={()=>{
-                                        setProducts(
-                                            [...products].filter((pro)=>
-                                                pro.id !== product.id
-                                            )
-                                        );
+                                        if(confirm(`Remove "${product.name}"?`)){
+                                            removeProduct(product.id)
+                                        }
                                     }}>
-                                <svg viewBox="0 0 24 24" 
-                                    fill="none" 
+                                <svg viewBox="0 0 24 24" fill="none" 
                                     stroke="currentColor" strokeWidth="1.8" 
                                     strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
                                 </svg>

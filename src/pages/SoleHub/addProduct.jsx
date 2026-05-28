@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef} from "react";
 function AddProductPage({display,setPage,manageProduct,isEditType,editPro}){
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
