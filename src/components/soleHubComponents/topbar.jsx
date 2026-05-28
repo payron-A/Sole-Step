@@ -1,8 +1,8 @@
-function Topbar(){
+function Topbar({currentPage}){
     return (
 <header className="topbar">
   <h2 className="topbar-title">
-    Dashboard
+    {currentPage}
   </h2>
   <div className="topbar-actions">
     <a className="icon-btn has-dot">

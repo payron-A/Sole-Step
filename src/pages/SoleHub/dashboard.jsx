@@ -1,11 +1,8 @@
 
-import Topbar from '../../components/soleHubComponents/topbar';
 import Panel from '../../components/soleHubComponents/panel';
 function DashboardPage(){
     return (
-
-<div className="content">
-  <Topbar/>
+<>
   <section className="page"
            style={{display:"flex",flexDirection:"column",gap:"22px"}}>
     <div className="stat-grid">
@@ -66,7 +63,7 @@ function DashboardPage(){
       </div>
     </div>
   </section>
-</div>
+</>
     )
 }
 export default DashboardPage;
