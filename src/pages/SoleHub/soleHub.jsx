@@ -1,6 +1,7 @@
 import '../../styles/soleHub.css';
 import DashboardPage from './dashboard.jsx';
 import ProductsPage from './products.jsx';
+import  CustomersPage from './customers.jsx'
 import Sidebar from '../../components/soleHubComponents/sidebar';
 function SoleHubPage(){
     return (
@@ -9,7 +10,9 @@ function SoleHubPage(){
   <main className="main-area">
     <DashboardPage/>
     <ProductsPage/>
+    <CustomersPage/>
   </main>
-</div>)
+</div>
+)
 }
 export default SoleHubPage;

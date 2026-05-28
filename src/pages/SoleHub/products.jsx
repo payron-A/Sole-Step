@@ -49,23 +49,26 @@ function ProductsPage(){
                         <td>3</td>
                         <td>$15.00</td>
                         <td>
-                            <span className="badge ok">Active</span>
+                            <span className="status warn">Active</span>
                         </td>
-                        <td className="row-actions">
-                            <button className="icon-btn sm">
-                                <svg viewBox="0 0 24 24" fill="none" 
-                                    stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
-                                </svg>
-                            </button>
+                        <td>
+                            <div className="row-actions">
+                                <button className="icon-btn sm">
+                                    <svg viewBox="0 0 24 24" fill="none" 
+                                        stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
+                                    </svg>
+                                </button>
+                            
                             <button className="icon-btn sm">
                                 <svg viewBox="0 0 24 24" fill="none" 
                                     stroke="currentColor" strokeWidth="1.8" 
                                     strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
                                 </svg>
                             </button>
+                            </div>
                         </td>
                     </tr>
-                     <tr>
+                                        <tr>
                         <td>
                             <span className="cell-thumb">
                                 <svg viewBox="0 0 24 24" 
@@ -78,20 +81,23 @@ function ProductsPage(){
                         <td>3</td>
                         <td>$15.00</td>
                         <td>
-                            <span className="badge ok">Active</span>
+                            <span className="status ok">Active</span>
                         </td>
-                        <td className="row-actions">
-                            <button className="icon-btn sm">
-                                <svg viewBox="0 0 24 24" fill="none" 
-                                    stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
-                                </svg>
-                            </button>
-                            <button className="icon-btn sm">
+                        <td>
+                            <div className="row-actions">
+                                <button className="icon-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" 
+                                        stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
+                                    </svg>
+                                </button>
+                            
+                            <button className="icon-btn">
                                 <svg viewBox="0 0 24 24" fill="none" 
                                     stroke="currentColor" strokeWidth="1.8" 
                                     strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
                                 </svg>
                             </button>
+                            </div>
                         </td>
                     </tr>
                     </tbody>

@@ -346,14 +346,13 @@
   background:var(--white);
   border:1px solid var(--stone); 
   border-radius:14px; 
-  overflow:hidden; 
+  overflow:auto; 
 }
 .data-table{ 
   width:100%; 
   border-collapse:collapse; 
 }
 .data-table th{ 
-  text-align:center; 
   font-size:11px; 
   text-transform:uppercase; 
   letter-spacing:.04em; 
@@ -362,23 +361,110 @@
   border-bottom:1px solid var(--stone); 
 }
 .data-table td{ 
-  text-align:center; 
-  padding:13px 18px; 
+  position: relative;
+  padding:11px 18px; 
   font-size:13.5px; 
   border-bottom:1px solid var(--stone); 
 }
 .data-table tr:last-child td{ 
   border-bottom:none; 
 }
-.data-table tr:hover td{ background:var(--rose-pale); }
-.cell-thumb{ width:34px; height:34px; border-radius:8px; background:var(--beige); display:flex; align-items:center; justify-content:center; font-size:16px; }
-.row-actions{ display:flex; gap:6px; justify-content:flex-end; }
+.data-table tr:hover td{ 
+  background:var(--rose-pale); 
+}
+.cell-thumb{ 
+ 
+  width:34px; 
+  height:34px; 
+  border-radius:8px; 
+  background:var(--beige); 
+  display:flex;
+  align-items:center;
+  justify-content:center; 
+  font-size:16px; 
+}
+.row-actions{
+  padding:3px;
+  display: flex;
+  gap:8px;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height: 100%;
+}
+.row-actions .icon-btn{
+  display:inline-block;
+}
+.status{
+  background-color: var(--gold);
+  border: 1px solid var(--border);
+  color: var(--white);
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  font-size:11px; 
+  font-weight:700; 
+}
+.status.ok{ 
+  color:#2E7D4F; 
+  background:#E4F4E9; 
+}
+.status.warn{ 
+  color:#B4453A; 
+  background:#FBE6E4; 
+}
 
-.badge{ font-size:11px; font-weight:700; padding:4px 12px; border-radius:20px; }
-.badge.ok{ color:#2E7D4F; background:#E4F4E9; }
-.badge.warn{ color:#B4453A; background:#FBE6E4; }
+/* ________ APP SHELL ________ */
+/* ________ Customers   ________ */
 
-.coupon-code{ font-family:monospace; background:var(--beige); padding:4px 10px; border-radius:6px; font-size:12px; letter-spacing:.04em; }
+
+.customer-grid{ 
+  display:grid; 
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); 
+  gap:16px; 
+}
+.customer-card{ 
+  background:var(--white); 
+  border:1px solid var(--stone); 
+  border-radius:14px; padding:18px; 
+}
+.customer-head{ 
+  display:flex; 
+  align-items:center; 
+  gap:12px; 
+  margin-bottom:14px;
+}
+.customer-head .img{ 
+  width:48px; 
+  height:48px; 
+  border:1px solid var(--stone);
+  border-radius:50%; 
+  object-fit:cover;
+}
+.customer-head h4{ 
+  font-family:var(--title-font); 
+  font-size:17px; 
+}
+.customer-head small{ 
+  color:var(--taupe); 
+  font-size:11px;
+}
+.customer-body{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:10px; 
+  font-size:13px;
+}
+.customer-body span{ 
+  color:var(--taupe); 
+  font-size:11px; 
+  font-weight:600; 
+  display:block; 
+  margin-bottom:2px; 
+}
+
 
 
 /* ---------- responsive ---------- */
