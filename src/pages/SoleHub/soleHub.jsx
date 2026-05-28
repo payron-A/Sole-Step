@@ -38,7 +38,7 @@ function SoleHubPage(){
   },[admin][isLogin])
     return (
 <div className="app-shell">
-  {page === "Log in"?
+  {page === "Log in" || page === "Add Product"?
     "":
     <Sidebar setPage={setPage}
              currentPage={page}
@@ -50,16 +50,25 @@ function SoleHubPage(){
                setPage={setPage}
                setAdmin={setAdmin}
                setIsLogin={setIsLogin}/>
+
+    <AddProductPage 
+              setPage={setPage}
+              display={
+                page === "Add Product"?"block":"none"}/>
+
     <div className="content">
-          {page === "Log in"?
+          {page === "Log in" || page === "Add Product"?
             "":<Topbar currentPage={page}/>
             }
           <DashboardPage 
             setPage={setPage}
             display={
               page === "Dashboard"?"block":"none"}/>
-          <ProductsPage display={
-            page === "Products"?"block":"none"}/>
+          <ProductsPage 
+            setPage={setPage}
+            display={
+              page === "Products"?"block":"none"}
+            />
           <CustomersPage display={
             page === "Customers"?"block":"none"}/> 
           <InventoryPage display={
@@ -72,9 +81,6 @@ function SoleHubPage(){
             page === "Reviews"?"block":"none"}/>
           <SettingsPage display={
             page === "Settings"?"block":"none"}/>
-          
-          <AddProductPage display={
-            page === "Add Product"?"block":"none"}/>
           <NotificationPage display={
             page === "Notification"?"block":"none"}/>
     </div>

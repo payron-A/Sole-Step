@@ -11,7 +11,7 @@ export function ToastProvider(){
         }, 2000);
     }
     return (
-    <ToastContext.Provider value={{showToast,useToast}}>
+    <ToastContext.Provider value={{showToast}}>
         <App/>
         <div className="toast" ref={toastRef}></div>
     </ToastContext.Provider>)

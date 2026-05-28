@@ -167,14 +167,9 @@
         grid-template-columns: 1fr;
     }
 }
-@media (max-width : 600px) {
-    .feat-bar{
-        grid-template-columns: repeat(2,1fr);
-        
-    }
-}
+
 .feat-bar{
-    background:#fff;
+    background:var(--white);
     border-top:1px solid var(--stone);
     border-bottom:1px solid var(--stone);
     padding:2rem 1rem;
@@ -202,3 +197,9 @@
 }
 .feat-ttl{font-size:13px;font-weight:600;color:var(--charcoal)}
 .feat-sub{font-size:11px;color:var(--taupe);margin-top:2px}
+@media (max-width : 600px) {
+    .feat-bar{
+        grid-template-columns: repeat(2,1fr);
+        
+    }
+}

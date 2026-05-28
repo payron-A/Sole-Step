@@ -42,10 +42,12 @@ function ProductDetails() {
           </div>
 
           <div style={{ marginTop: '3rem' }}>
-            <FeaturesBar />
+            
           </div>
+          
         </div>
       </div>
+      <FeaturesBar />
       <Footer />
     </div>
   );

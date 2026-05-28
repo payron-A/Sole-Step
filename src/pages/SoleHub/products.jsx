@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { originProducts } from "../../js/products";
 import TopFilter from '../../components/filter/topFilter';
 
-function ProductsPage({display}){
+function ProductsPage({display,setPage}){
 
 // _____ STATE _____
 // _____ Products
@@ -69,13 +69,16 @@ function ProductsPage({display}){
                 </svg>
             </button>
             <button className="toolbar-btn"
-                    title="Add Product">
+                    title="Add Product"
+                    onClick={()=>{
+                        setPage("Add Product")
+                    }}
+                    >
                 <svg viewBox="0 0 24 24" 
                     fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12h14"/>
                 </svg>
             </button>
         </div>
-        
     </div>
     <div className="hidden-filterbar hide"
         ref={hideFilterbarRef}>
