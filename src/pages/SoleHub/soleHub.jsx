@@ -83,7 +83,9 @@ function SoleHubPage(){
 
     <div className="content">
           {page === "Log in" || page === "Add Product"?
-            "":<Topbar currentPage={page}/>
+            "":<Topbar currentPage={page}
+                       setPage={setPage}
+                       products={products}/>
             }
           <DashboardPage 
             setPage={setPage}
@@ -111,8 +113,10 @@ function SoleHubPage(){
             page === "Reviews"?"block":"none"}/>
           <SettingsPage display={
             page === "Settings"?"block":"none"}/>
-          <NotificationPage display={
-            page === "Notification"?"block":"none"}/>
+          <NotificationPage 
+            products={products}
+            display={
+              page === "Notification"?"block":"none"}/>
     </div>
   </main>
 </div>

@@ -1,31 +1,66 @@
-function NotificationPage({display}){
+import { useState } from "react";
+
+const initialActivity = [
+    { id: "a1", title: "Low Order", text: "Order #00024 has been pending for 2 days.", time: "1 hour ago" },
+    { id: "a2", title: "New Order", text: "A new order was placed by Ahmed.", time: "2 hours ago" },
+];
+
+function NotificationPage({display,products=[]}){
+
+// _____ STATE _____
+    const [activity,setActivity] = useState(initialActivity);
+    const [dismissedStockIds,setDismissedStockIds] = useState([]);
+
+// _____ Low stock alerts, generated live from real product data
+    const stockAlerts = products
+        .filter(p => +p.stock < 5 && !dismissedStockIds.includes(p.id))
+        .map(p => ({
+            id: p.id,
+            title: "Low Stock",
+            text: `${p.name} is running low on stock (${p.stock ?? 0} left).`,
+            time: "Just now"
+        }));
+
+    const allNotifications = [...stockAlerts, ...activity];
+
+    function dismiss(item){
+        if(item.time === "Just now"){
+            setDismissedStockIds(prev => [...prev, item.id]);
+        }else{
+            setActivity(prev => prev.filter(a => a.id !== item.id));
+        }
+    }
+
+
     return (
 <section className="page"style={{display:display}}>
 <ul className="notif-list">
-    <li className="notif-card">
-        <span className="notif-dot"></span>
-        <div>
-            <b>Low Stock</b>
-            <p>Nike Air Max is running low on stock.</p>
-        </div>
-        <small>5 mins ago</small>
-    </li>
-    <li className="notif-card">
-        <span className="notif-dot"></span>
-        <div>
-            <b>Low Order</b>
-            <p>Order #00024 has been pending for 2 days.</p>
-        </div>
-        <small>1 hour ago</small>
-    </li>
-    <li className="notif-card">
-        <span className="notif-dot"></span>
-        <div>
-            <b>New Order</b>
-            <p>A new order was placed by Ahmed.</p>
-        </div>
-        <small>2 hours ago</small>
-    </li>
+    {allNotifications.length === 0 &&
+        <li className="notif-card">
+            <div>
+                <b>You're all caught up</b>
+                <p>No new notifications.</p>
+            </div>
+        </li>
+    }
+    {allNotifications.map(item=>
+        <li className="notif-card" key={item.id}>
+            <span className="notif-dot"></span>
+            <div>
+                <b>{item.title}</b>
+                <p>{item.text}</p>
+            </div>
+            <small>{item.time}</small>
+            <button className="icon-btn"
+                    title="Dismiss"
+                    onClick={()=>dismiss(item)}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 6l12 12M18 6L6 18"/>
+                </svg>
+            </button>
+        </li>
+    )}
 </ul>
 </section>
 )

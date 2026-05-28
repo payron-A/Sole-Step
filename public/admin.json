@@ -1,18 +1,26 @@
 [
     {    
     "email":"az.zi.mo.fa@gmail.com",    
-    "password":"GoiGoeool"
+    "password":"GoiGoeool",
+    "emailNotifications": true,
+    "lowStockAlerts": true
     },
     {    
     "email":"riad@gmail.com",    
-    "password":"jjdIlslB.99Jo"
+    "password":"jjdIlslB.99Jo",
+    "emailNotifications": true,
+    "lowStockAlerts": true
     },
     {    
     "email":"mohamed@gmail.com",    
-    "password":"mohammed.001"
+    "password":"mohammed.001",
+    "emailNotifications": true,
+    "lowStockAlerts": true
     },
     {    
     "email":"fathi.01@gmail.com",    
-    "password":"fathi.001"
+    "password":"fathi.001",
+    "emailNotifications": true,
+    "lowStockAlerts": true
     }
 ]
