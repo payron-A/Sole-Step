@@ -1,0 +1,52 @@
+:root {
+  --rose: #E8B4BC;
+  --rose-pale: #F8E8EC;
+  --rose-deep: #C98A96;
+  --rose-dark: #A8616E;
+  --cream: #FDF7F4;
+  --beige: #F2EAE4;
+  --stone: #E4D8D2;
+  --charcoal: #241610;
+  --brown: #6B4840;
+  --taupe: #9A7A72;
+  --gold: #C4A070;
+  --white: #FFFBF9;
+  --nav-h: 68px;
+  --radius: 2px;
+}
+*{
+    border:none;
+    outline:none;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: .5s;
+}
+h1{
+    font-size: clamp(2rem ,5vw,3rem);
+}
+h2{
+    font-size: clamp(1rem ,4vw,1.5rem);
+}
+h3{
+    font-size: 1rem;
+}
+p,div{
+    font-size: clamp(.9rem,2vw,1rem);
+}
+i{
+    font-size: 0.9rem;
+}
+input{
+    font-size: 1.1rem;
+}
+html{scroll-behavior:smooth}
+body{
+    width:100%;
+    min-height: 100vh;
+    font-family:'DM Sans',sans-serif;
+    background:var(--cream);
+    color:var(--charcoal);
+    overflow-x:hidden;
+}
