@@ -1,6 +1,7 @@
+import Hero from "../components/hero";
 function HomePage(){
     return(
-        <>home</>
+        <Hero/>
     )
 }
 export default HomePage;

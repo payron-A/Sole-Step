@@ -13,6 +13,7 @@
   --white: #FFFBF9;
   --nav-h: 68px;
   --radius: 2px;
+  --title-font : 'Cormorant Garamond',serif;
 }
 *{
     border:none;
@@ -24,7 +25,7 @@
     transition: .5s;
 }
 h1{
-    font-size: clamp(2rem ,5vw,3rem);
+    font-size: clamp(60px ,6vw,86px);
 }
 h2{
     font-size: clamp(1rem ,4vw,1.5rem);
