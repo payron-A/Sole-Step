@@ -1,0 +1,47 @@
+.cats-sec{
+    padding:80px
+}
+.cat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(2,1fr);
+    gap:1rem;
+}
+.cat-card{
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    border-radius:var(--radius);
+    border-radius: 29px;
+}
+.cat-card img{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+    display:block;
+    filter: grayscale(60%);
+    
+}
+.cat-card:hover img{
+    transform:scale(1.07) rotate(3deg);
+    filter: grayscale(0);
+}
+.cat-ov{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width: 100%;
+    padding:36px 24px 26px;
+    background:linear-gradient(transparent,var(--charcoal));
+    color:var(--white);
+}
+.cat-name{
+    font-weight:bolder;
+    margin-bottom:4px;
+}
+.cat-sub{
+    font-size:12px;
+    opacity:.8;
+    letter-spacing:.04em;
+}
+

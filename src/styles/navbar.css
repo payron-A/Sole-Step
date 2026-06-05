@@ -118,24 +118,4 @@ nav{
     translate:0 -6px;
     background-color:var(--rose-deep);
 }
-@media (max-width:850px){
-    .nav-menu{
-        display: flex;
-        z-index: 1001;
-    }
-    .nav-links{
-        height: 100vh;
-        position: fixed;
-        top:0;
-        right:-200px;
-        flex-direction: column;
-        z-index: 1000;
-        background-color:var(--stone);
-        padding: 3rem;
-        padding-top: 5rem;
-        justify-content: flex-start;
-        gap:3rem;
-        align-items: center;
-        backdrop-filter: blur(20px);
-    }
-}
+

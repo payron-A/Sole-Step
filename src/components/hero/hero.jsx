@@ -1,5 +1,5 @@
-import '../styles/hero.css';
-import Button from './button';
+import "/src/styles/hero.css";
+import Button from '../button.jsx';
 function Hero(){
     const date = new Date().getFullYear()
     return(
