@@ -14,7 +14,7 @@
   --nav-h: 68px;
   --radius: 2px;
   --title-font : 'Cormorant Garamond',serif;
-  --border:rgba(0, 0, 0, 0.245);
+  --border:rgba(255,255,255,.1);
 }
 *{
     border:none;
@@ -41,7 +41,7 @@ i{
     font-size: 0.9rem;
 }
 input{
-    font-size: 1.1rem;
+    font-size: 13px;
 }
 html{scroll-behavior:smooth}
 body{

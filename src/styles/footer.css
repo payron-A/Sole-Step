@@ -1,0 +1,125 @@
+footer{
+    background:black;
+    color:rgba(255,255,255,.65);
+    padding:2rem;
+}
+.footer-grid{
+    display:grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap:2rem;
+    margin-bottom:52px;
+    padding-bottom:52px;
+    border-bottom:1px solid var(--border);
+}
+.ft-brand{
+    color:#fff;
+    margin-bottom:1rem;
+}
+.ft-brand em{
+    color:var(--rose);
+    font-style:normal;
+}
+.ft-desc{
+    font-size:13px;
+    line-height:1.75;
+    color:rgba(255,255,255,.5);
+    max-width:280px;
+    margin-bottom:26px
+}
+.ft-col-ttl{
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#fff;
+    margin-bottom:22px
+}
+
+.ft-link{
+    display:block;
+    font-size:13px;
+    color:rgba(255,255,255,.5);
+    text-decoration:none;
+    cursor:pointer;
+    padding:4px 0;
+    transition:color .2s;
+}
+.ft-link:hover{
+    color:var(--white);
+}
+.nl-wrap{
+    display:flex;
+    margin-top:10px;
+}
+.nl-in{
+    flex:1;
+    padding:12px;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    color:var(--white);
+    border-radius:var(--radius) 0 0 var(--radius);
+}
+.nl-in::placeholder{
+    color:rgba(255,255,255,.35);
+}
+.nl-btn{
+    background:var(--rose-deep);
+    border:none;
+    color:#fff;
+    padding:12px 18px;
+    cursor:pointer;
+    font-size:15px;
+    transition:background .2s;
+    border-radius:0 var(--radius) var(--radius) 0;
+}
+.nl-btn:hover{
+    background:var(--rose-dark);
+}
+.footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:12px;
+    color:rgba(255,255,255,.35);
+}
+.social-row{
+    display:flex;
+    gap:10px;
+    margin-top:0;
+}
+.soc-btn{
+    width:36px;
+    height:36px;
+    border:1px solid rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    color:rgba(255,255,255,.5);
+    transition:all .2s;
+    font-size:14px;
+    border-radius:var(--radius);
+}
+.soc-btn:hover{
+    background:var(--rose-deep);
+    border-color:var(--rose-deep);
+    color:#fff;
+}
+.ft-pay{
+    display:flex;gap:8px
+}
+.ft-pay-ic{
+    padding:4px 10px;
+    border:1px solid rgba(255,255,255,.2);
+    font-size:10px;
+    font-weight:800;
+    color:rgba(255,255,255,.6);
+    border-radius:3px;
+}
+@media (max-width:910px) {
+    .footer-grid{
+        grid-template-columns: 2fr 2fr;
+    }
+    .nl-in{
+        
+    }
+}
