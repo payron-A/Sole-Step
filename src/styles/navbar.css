@@ -118,4 +118,10 @@ nav{
     translate:0 -6px;
     background-color:var(--rose-deep);
 }
+@media (max-width:850px) {
+    .nav-menu{
+        display: flex;
+        z-index: 1001;
+    }
+}
 

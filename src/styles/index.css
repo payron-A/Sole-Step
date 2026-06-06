@@ -1,5 +1,5 @@
 :root {
-  --rose: #E8B4BC;
+  --rose: #D9747C;
   --rose-pale: #F8E8EC;
   --rose-deep: #C98A96;
   --rose-dark: #A8616E;
@@ -14,6 +14,7 @@
   --nav-h: 68px;
   --radius: 2px;
   --title-font : 'Cormorant Garamond',serif;
+  --border:rgba(0, 0, 0, 0.245);
 }
 *{
     border:none;
@@ -75,10 +76,6 @@ body{
 }
 @media (max-width:850px){
     /* NAVBAR */
-    .nav-menu{
-        display: flex;
-        z-index: 1001;
-    }
     .nav-links{
         height: 100vh;
         position: fixed;

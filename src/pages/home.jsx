@@ -1,5 +1,6 @@
 import Hero from "../components/hero/hero.jsx";
 import Category from "../components/category.jsx";
+import NewArrivals from "../components/newArrivals-home.jsx";
 import FeaturesBar from "../components/hero/featuresBar.jsx";
 function HomePage(){
     return(
@@ -7,6 +8,7 @@ function HomePage(){
         <Hero/>
         <FeaturesBar/>
         <Category/>
+        <NewArrivals/>
     </div>
     )
 }
