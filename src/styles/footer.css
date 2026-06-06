@@ -1,7 +1,7 @@
 footer{
     background:black;
     color:rgba(255,255,255,.65);
-    padding:2rem;
+    padding:1rem;
 }
 .footer-grid{
     display:grid;
@@ -119,7 +119,9 @@ footer{
     .footer-grid{
         grid-template-columns: 2fr 2fr;
     }
-    .nl-in{
-        
+}
+@media (max-width:500px) {
+    .footer-grid{
+        grid-template-columns: 2fr;
     }
 }

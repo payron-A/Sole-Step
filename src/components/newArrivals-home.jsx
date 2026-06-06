@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import Card from "./card";
+import { Link } from "react-router-dom";
 import Button from "./button";
 
 const products = [
@@ -112,7 +113,7 @@ function NewArrivals() {
       </div>
 
       <div style={{ textAlign: "center", marginTop: "44px" }}>
-        <Button variant="btn-outline">View All Products</Button>
+        <Link to="/shop.jsx"><Button variant="btn-outline">View All Products</Button></Link>
       </div>
     </section>
   );

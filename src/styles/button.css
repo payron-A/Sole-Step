@@ -35,13 +35,16 @@
 .btn-dark:hover::before{
     bottom:0;
 }
-.btn-rose{background:var(--rose-deep);
-    color:#fff
+.btn-rose{
+    
+    background:var(--rose-deep);
+    color:#fff;
+    padding:1rem 1.3rem;
 }
 .btn-rose:hover{
     background:var(--rose-dark);
     transform:translateY(-2px);
-    box-shadow:0 8px 24px rgba(201,138,150,.35);
+    box-shadow:0 8px 10px var(--rose-deep);
 }
 .btn-outline{
     background:transparent;
@@ -55,7 +58,7 @@
 .btn-outline-rose{
     background:transparent;
     color:var(--rose-deep);
-    border:1.5px solid var(--rose-deep)
+    border:1.5px solid var(--rose-deep);
 }
 .btn-outline-rose:hover{
     background:var(--rose-deep);

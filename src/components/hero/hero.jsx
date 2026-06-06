@@ -1,5 +1,6 @@
 import "/src/styles/hero.css";
 import Button from '../button.jsx';
+import { Link } from "react-router-dom";
 function Hero(){
     const date = new Date().getFullYear()
     return(
@@ -10,7 +11,7 @@ function Hero(){
             <p className="hero-sub">Premium shoes &amp; socks for women and kids.</p>
             <p className="hero-tag">Comfort. Style. Confidence.</p>
             <div className="hero-cta">
-                <Button variant ="btn-dark">Shop Now →</Button>
+                <Link to="/shop.jsx"><Button variant ="btn-dark">Shop Now →</Button></Link>
                 <Button variant ="btn-outline"> Our Story</Button>
             </div>
             <div className="hero-stats">

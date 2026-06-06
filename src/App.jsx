@@ -6,10 +6,12 @@ import WomenPage from "./pages/women";
 import KidsPage from "./pages/kids";
 import NewArrivalsPage from "./pages/newArrivals";
 import SalePage from "./pages/sale";
+import { useRef } from "react";
 function App(){
+  const toast = useRef();
   return (
     <>
-    <Navbar/>
+    <Navbar toast={toast}/>
     <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/shop.jsx" element={<ShopPage/>}/>
@@ -19,6 +21,7 @@ function App(){
       <Route path="/sale.jsx" element={<SalePage/>}/>
       
     </Routes>
+    <div className="toast" ref={toast}>no comment</div>
     </>
   )
 }

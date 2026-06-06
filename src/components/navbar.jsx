@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import '../styles/navbar.css';
 import { Link } from 'react-router-dom';
-function Navbar(){
+function Navbar({toast}){
     const navbarLinks = useRef();
     const navbarIcon = useRef();
     function hideNavbar(){
@@ -17,9 +17,16 @@ function Navbar(){
             hideNavbar();
         }
     }
+    function showToastMsg(msg){
+                toast.current.classList.toggle("show");
+                toast.current.textContent = msg;
+                setTimeout(() => {
+                    toast.current.classList.remove("show")
+                }, 2000);
+    }
     return(
         <nav>
-            <div className="nav-logo">Sole &amp; <em>Step</em></div>
+            <Link to='/'><div className="nav-logo">Sole &amp; <em>Step</em></div></Link>
             <ul className="nav-links"
                 ref={navbarLinks}>
               <li><Link onClick={hideNavbar} to='/'>Home</Link></li>
@@ -30,7 +37,7 @@ function Navbar(){
               <li><Link onClick={hideNavbar} to='/sale.jsx'className="sale">Sale</Link></li>
             </ul>
             <div className="nav-icons">
-              <button className="nav-icon" title="Wishlist">
+              <button className="nav-icon" title="Wishlist"onClick={()=>showToastMsg("wishList is not comming yet")}>
                 <svg width="19" height="19"
                      fill="none" 
                      stroke="currentColor" 
