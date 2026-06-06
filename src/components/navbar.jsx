@@ -24,7 +24,7 @@ function Navbar(){
                 ref={navbarLinks}>
               <li><Link onClick={hideNavbar} to='/'>Home</Link></li>
               <li><Link onClick={hideNavbar} to='/shop.jsx'>Shop</Link></li>
-              <li><Link onClick={hideNavbar} to='/wemon.jsx'>Women</Link></li>
+              <li><Link onClick={hideNavbar} to='/women.jsx'>Women</Link></li>
               <li><Link onClick={hideNavbar} to='/kids.jsx'>Kids</Link></li>
               <li><Link onClick={hideNavbar} to='/newArrivals.jsx'>New Arrivals</Link></li>
               <li><Link onClick={hideNavbar} to='/sale.jsx'className="sale">Sale</Link></li>
