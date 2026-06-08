@@ -15,6 +15,7 @@
   --radius: 2px;
   --title-font : 'Cormorant Garamond',serif;
   --border:rgba(255,255,255,.1);
+  --filterbar-width:17rem
 }
 *{
     border:none;

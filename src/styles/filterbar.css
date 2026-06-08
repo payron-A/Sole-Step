@@ -1,0 +1,112 @@
+/* TOP BAR */
+/* FILTER  */
+.shop-topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:2rem;
+    padding:20px;
+    z-index: 10;
+    border-bottom:1px solid var(--stone);
+}
+.sort-sel{
+    border:1px solid var(--stone);
+    background:var(--white);
+    border-radius: var(--radius);
+    padding:9px 1rem;
+    color:var(--brown);
+    cursor:pointer;
+    outline:none;
+}
+/* SIDE BAR */
+/* FILTER  */
+aside{
+    position:sticky;
+    float: left;
+    z-index:100;
+    height: 100vh;
+    top:0;
+    left:0;
+    width: var(--filterbar-width);
+    padding: 1rem 2rem;
+    overflow: auto;
+    scrollbar-width: none;
+}
+.sidebar-title{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--charcoal);
+    margin-bottom:14px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--stone);
+}
+.sidebar-sec{
+    margin-bottom:30px;
+}
+.slink{
+    display:block;
+    font-size:13px;
+    color:var(--taupe);
+    cursor:pointer;
+    padding:5px 0;
+    transition:all .2s;
+    text-decoration:none;
+}
+.slink:hover,.slink.active{
+    color:var(--charcoal);
+    font-weight:500;
+}
+.size-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    margin-top:6px;
+}
+.sz-btn{
+    width:38px;
+    aspect-ratio: 1/1;
+    border:1.5px solid var(--stone);
+    background:transparent;
+    font-size:12px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all .15s;
+}
+.sz-btn:hover,.sz-btn.act{
+    border-color:var(--charcoal);
+    background:var(--charcoal);
+    color:var(--white);
+}
+.swatches{
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-top:6px;
+}
+.swatch{
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    cursor:pointer;
+    border:2.5px solid transparent;
+    transition:border-color .2s;
+}
+.swatch:hover,.swatch.act{
+    border-color:var(--charcoal)
+}
+.range-slider{
+    width:100%;
+    accent-color:var(--rose-deep);
+    margin-top:10px;
+}
+.price-lbl{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:var(--taupe);
+    margin-top:5px;
+}

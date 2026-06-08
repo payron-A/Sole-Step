@@ -1,6 +1,6 @@
 import '../styles/card.css';
 
-function Card({ badge, image, category, title, stars = 5, price, originalPrice }) {
+function Card({ badge, image, category, title, stars = 0, price, originalPrice=""}) {
   return (
     <div className="product-card">
       {badge && <div className="badge">{badge}</div>}
@@ -24,9 +24,9 @@ function Card({ badge, image, category, title, stars = 5, price, originalPrice }
         </div>
 
         <div className="price-box">
-          <span className="current-price">{price}</span>
+          <span className="current-price">{price}$</span>
           {originalPrice && (
-            <span className="original-price">{originalPrice}</span>
+            <span className="original-price">{originalPrice}$</span>
           )}
         </div>
 
