@@ -1,7 +1,7 @@
 import '/src/styles/filterbar.css';
-function TopFilter(){
+function TopFilter({title,length}){
     return (<div className="shop-topbar">
-            <h2 style={{color:"var(--gold)"}}>Shop</h2>
+            <h2 style={{color:"var(--gold)"}}>{title}</h2>
             <div style={{display:"flex",gap:"14px",alignItems:"center"}}>
                 <select className="sort-sel">
                     <option>Newest</option>
@@ -9,7 +9,7 @@ function TopFilter(){
                     <option>Price: High to Low</option>
                     <option>Best Sellers</option>
                 </select>
-                <span style={{fontSize:"13px",color:"var(--taupe)"}}>Show: 20</span>
+                <span style={{fontSize:"13px",color:"var(--taupe)"}}>Show: {length}</span>
             </div>
         </div>)
 }

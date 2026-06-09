@@ -5,7 +5,7 @@ function Footer(){
         <footer>
             <div className="footer-grid">
               <div>
-                <Link to="/home.jsx"><h2 className="ft-brand">Sole &amp; <em>Step</em></h2></Link>
+                <Link to="/"><h2 className="ft-brand">Sole &amp; <em>Step</em></h2></Link>
                 <p className="ft-desc">Premium shoes &amp; socks for women and kids. Comfort. Style. Confidence.</p>
                 <div className="social-row">
                   <div className="soc-btn"><i className="fa-brands fa-facebook-f"></i></div>

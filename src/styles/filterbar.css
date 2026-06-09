@@ -46,6 +46,7 @@ aside{
     margin-bottom:30px;
 }
 .slink{
+    cursor: pointer;
     display:block;
     font-size:13px;
     color:var(--taupe);
@@ -109,4 +110,35 @@ aside{
     font-size:12px;
     color:var(--taupe);
     margin-top:5px;
+}
+.mat-chk{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:13px;
+    color:var(--taupe);
+    margin:7px 0;
+    cursor:pointer
+}
+.mat-chk input{
+    accent-color:var(--rose-deep);
+    width:14px;height:14px
+}
+.pg-header{
+    padding: 1rem;
+}
+.breadcrumb{
+    display:flex;
+    gap:8px;align-items:center;
+    font-size:12px;
+    color:var(--taupe);
+    margin-bottom:28px;
+}
+.breadcrumb .bc-link{
+    cursor:pointer;
+    transition:color .2s;
+    color:var(--taupe);
+}
+.breadcrumb .bc-link:hover{
+    color:var(--charcoal);
 }
