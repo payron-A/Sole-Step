@@ -1,7 +1,7 @@
 
 import '/src/styles/filterbar.css';
 import { useState } from 'react';
-function FilterBar({filter,products}){
+function FilterBar({filter,products,filtersize,filterprice,filtercolor}){
     const [activeLink,setActiveLink] = useState("All Product");
     const [activeSize,setActiveSize] = useState(filter.sizes[0]);
     return(
@@ -24,6 +24,7 @@ function FilterBar({filter,products}){
                     <button key={i} className={`sz-btn ${activeSize == size?"act":""}`}
                             onClick={()=>{
                                 setActiveSize(size); 
+                                filtersize(size);
                             }
                             }>{size}</button>
                 )}
@@ -34,7 +35,8 @@ function FilterBar({filter,products}){
                 <input type="range" min="0" max={filter.highPrice}
                        className="range-slider"
                        onInput={(e)=>{
-                        e.target.nextElementSibling.lastChild.textContent='$'+e.target.value
+                        e.target.nextElementSibling.lastChild.textContent='$'+e.target.value;
+                        filterprice(e.target.value);
                        }}/>
                 <div className="price-lbl"><span>$0</span><span>$350</span></div>
             </div>
@@ -42,16 +44,11 @@ function FilterBar({filter,products}){
                 <div className="sidebar-title">Color</div>
                 <div className="swatches">
                 {filter.color.map((col,i)=>
-                    <div key={i} className={`swatch`} style={{background:`${col}`}} title={col}></div>
+                    <div key={i} className={`swatch`} style={{background:`${col}`}} title={col}
+                         onClick={()=>filtercolor(col)}></div>
                 )}
                 </div>
             </div>
-            {filter.materials?<div style={{display:"flex",flexDirection:"column",gap:"7px"}} className="sidebar-sec" >
-                <div className="sidebar-title">Material</div>
-                {filter.materials.map((m,i)=>
-                <label key={i} className="mat-chk"><input type="checkbox"/>{m}</label>
-                )}
-            </div>:""}
     </aside>
     )
 }

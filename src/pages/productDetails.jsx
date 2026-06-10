@@ -1,4 +1,5 @@
 import Button from '../components/button';
+import Footer from '../components/footer'
 import { useState } from 'react';
 import FeaturesBar from '../components/hero/featuresBar';
 import '/home/payron/Downloads/vsCode/vscode/vs code.data/sole-stip/src/styles/productDetails.css';
@@ -67,7 +68,9 @@ function ProductDetails(){
                         </div>
                     </div>
                 </div>
+                <Footer/>
             </div>
+            
 
     )
 }

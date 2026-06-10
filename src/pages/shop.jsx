@@ -28,10 +28,39 @@ function ShopPage(){
             break;
         }
     }
+    function filterSize(size){
+        setProducts([...originProducts].filter(pro=>pro.size.includes(size)))
+    }
+    function filterPrice(price){
+        setProducts([...originProducts].filter(pro=>pro.price<=price))
+    }
+    function filterColor(col){
+        setProducts([...originProducts].filter(pro=>pro.colors.includes(col)))
+    }
+    function FilterTop(option){
+        switch(option){
+            case "Newest":
+                setProducts([...originProducts].filter(pro=>pro.badge == "New"))
+                break;
+            case "Price: Low to High":
+                setProducts([...originProducts].sort((a,b)=>a.price-b.price))
+
+                break;
+            case "Price: High to Low":
+                setProducts([...originProducts].sort((a,b)=>b.price-a.price))
+                break;
+            case "Best Sellers":
+                setProducts([...originProducts].filter(pro=>pro.price <= (filtersOptions.highPrice / 2)))
+                break;
+        }
+    }
     return (
             <div className="page">
-                <TopFilter title="Shop" length={products.length}/>
-                <FilterBar filter={filtersOptions} products={filterCategory}/>
+                <TopFilter title="Shop" length={products.length}
+                            Filtertop={FilterTop}/>
+                <FilterBar filter={filtersOptions} products={filterCategory}
+                            filtersize={filterSize} filterprice={filterPrice}
+                            filtercolor={filterColor}/>
                 <div className="product-grid"
                      style={{display:"flex",
                         justifyContent:"center",
@@ -48,7 +77,6 @@ function ShopPage(){
                                   key={p.id}/>
                         )}
                      </div>
-                     <Footer/>
             </div>
     )
 }

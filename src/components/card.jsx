@@ -3,14 +3,15 @@ import '../styles/card.css';
 
 function Card({ badge, image, category, title, stars = 0, price, originalPrice=""}) {
   return (
-    <Link to='/productDetails.jsx'>
       <div className="product-card">
       {badge && <div className="badge">{badge}</div>}
       <div className="card-header">
         <button className="wishlist-btn" aria-label="Add to wishlist">
           <i className="fa-solid fa-heart"></i>
         </button>
-        <img src={image} alt={title} draggable="false" />
+        <Link to='/productDetails.jsx'>
+          <img src={image} alt={title} draggable="false" />
+        </Link>
       </div>
       <div className="card-content">
         <div className="category">{category}</div>
@@ -35,7 +36,6 @@ function Card({ badge, image, category, title, stars = 0, price, originalPrice="
         <button className="add-to-cart-btn">Add to Cart</button>
       </div>
     </div>
-    </Link>
   );
 }
 

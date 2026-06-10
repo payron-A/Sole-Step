@@ -14,6 +14,9 @@ function KidsPage(){
         highPrice:300,
         color:["#920402","red","gray","yello","gold","pink","green"],
     }
+    function filterSize(size){
+        setProducts([...kidsProduct].filter(pro=>pro.size.includes(size)))
+    }
     function filterKids(cat){
         switch(cat){
             case "Sneakers":
@@ -30,10 +33,39 @@ function KidsPage(){
                 break;
         }
     }
+    function filterSize(size){
+        setProducts([...kidsProduct].filter(pro=>pro.size.includes(size)))
+    }
+    function filterPrice(price){
+        setProducts([...kidsProduct].filter(pro=>pro.price<=price))
+    }
+    function filterColor(col){
+        setProducts([...kidsProduct].filter(pro=>pro.colors.includes(col)))
+    }
+    function FilterTop(option){
+        switch(option){
+            case "Newest":
+                setProducts([...originProducts].filter(pro=>pro.badge == "New"))
+                break;
+            case "Price: Low to High":
+                setProducts([...originProducts].sort((a,b)=>a.price-b.price))
+
+                break;
+            case "Price: High to Low":
+                setProducts([...originProducts].sort((a,b)=>b.price-a.price))
+                break;
+            case "Best Sellers":
+                setProducts([...originProducts].filter(pro=>pro.price <= (filtersOptions.highPrice / 2)))
+                break;
+        }
+    }
     return (
             <div className="page">
-                <TopFilter title="Kids" length={products.length}/>
-                <FilterBar filter={filtersOptions} products={filterKids}/>
+                <TopFilter title="Kids" length={products.length}
+                            Filtertop={FilterTop}/>
+                <FilterBar filter={filtersOptions} products={filterKids}
+                            filtersize={filterSize} filterprice={filterPrice}
+                            filtercolor={filterColor}/>
                 <div className="product-grid"
                      style={{display:"flex",
                         justifyContent:"center",
@@ -50,7 +82,6 @@ function KidsPage(){
                                   key={p.id}/>
                         )}
                      </div>
-                     <Footer/>
             </div>
     )
 }
