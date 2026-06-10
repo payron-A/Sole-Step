@@ -8,16 +8,30 @@ function ShopPage(){
     const [products,setProducts] = useState(originProducts);
     const filtersOptions ={
         title:"category",
-        filterLinks:["All Product","Women Shoes","Kids Shoes","Best Sellers"],
+        filterLinks:["All Product","Women shoes","Kids shoes"],
         sizes:[23,34,343,54,32],
         highPrice:500,
         color:["red","yellow","white","brown"],
         materials:["Leather","Canvas","Knit","Cotton"],
     }
+    function filterCategory(cat){
+    switch(cat){
+        case "Women shoes":
+            setProducts([...originProducts].filter(c => c.cat == "women"))
+            break;
+        
+        case "Kids shoes":
+            setProducts([...originProducts].filter(c => c.cat == "kids"))
+            break;
+        default:
+            setProducts([...originProducts])
+            break;
+        }
+    }
     return (
             <div className="page">
                 <TopFilter title="Shop" length={products.length}/>
-                <FilterBar filter={filtersOptions}/>
+                <FilterBar filter={filtersOptions} products={filterCategory}/>
                 <div className="product-grid"
                      style={{display:"flex",
                         justifyContent:"center",

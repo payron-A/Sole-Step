@@ -46,6 +46,7 @@ aside{
     margin-bottom:30px;
 }
 .slink{
+    text-transform: capitalize;
     cursor: pointer;
     display:block;
     font-size:13px;

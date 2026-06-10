@@ -1,7 +1,7 @@
 
 import '/src/styles/filterbar.css';
 import { useState } from 'react';
-function FilterBar({filter}){
+function FilterBar({filter,products}){
     const [activeLink,setActiveLink] = useState("All Product");
     const [activeSize,setActiveSize] = useState(filter.sizes[0]);
     return(
@@ -12,6 +12,7 @@ function FilterBar({filter}){
                     <div key={i} className={`slink ${activeLink == link?"active":""}`}
                          onClick={()=>{
                             setActiveLink(link);
+                            products(link);
                          }}>{link}</div>
                 )}
             </div>
@@ -22,8 +23,7 @@ function FilterBar({filter}){
                 {filter.sizes.map((size,i)=>
                     <button key={i} className={`sz-btn ${activeSize == size?"act":""}`}
                             onClick={()=>{
-                                setActiveSize(size);
-                                
+                                setActiveSize(size); 
                             }
                             }>{size}</button>
                 )}

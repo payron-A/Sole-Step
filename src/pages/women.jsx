@@ -9,15 +9,34 @@ function WomenPage(){
     const [products,setProducts] = useState(womenProduct);
     const filtersOptions ={
         title:"Women Categories",
-        filterLinks:["All Women","Sneakers","Kids Shoes","Heels","Flats","Boots"],
+        filterLinks:["All Women","Sneakers","Heels","Flats","Boots"],
         sizes:[23,34,343,54,32],
         highPrice:400,
         color:["#920402","red","gray","yello","gold","pink","green"],
     }
+    function filterWomen(cat){
+        switch(cat){
+            case "Sneakers":
+                setProducts([...womenProduct].filter(c => c.type == "sneakers"))
+                break;
+            case "Heels":
+                setProducts([...womenProduct].filter(c => c.type == "heels"))
+                break;
+            case "Flats":
+                setProducts([...womenProduct].filter(c => c.type == "flats"))
+                break;
+            case "Boots":
+                setProducts([...womenProduct].filter(c => c.type == "boots"))
+                break;
+            default:
+                setProducts([...womenProduct])
+                break;
+        }
+    }
     return (
             <div className="page">
                 <TopFilter title="Women" length={products.length}/>
-                <FilterBar filter={filtersOptions} products={products}/>
+                <FilterBar filter={filtersOptions} products={filterWomen}/>
                 <div className="product-grid"
                      style={{display:"flex",
                         justifyContent:"center",
