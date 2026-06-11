@@ -8,6 +8,7 @@ import NewArrivalsPage from "./pages/newArrivals";
 import SalePage from "./pages/sale";
 import ProductDetails from "./pages/productDetails.jsx";
 import { useRef } from "react";
+import CartPage from "./pages/Cart.jsx";
 function App(){
   const toast = useRef();
   return (
@@ -20,9 +21,10 @@ function App(){
       <Route path="/kids.jsx" element={<KidsPage/>}/>
       <Route path="/newArrivals.jsx" element={<NewArrivalsPage/>}/>
       <Route path="/sale.jsx" element={<SalePage/>}/>
-      <Route path="/productDetails.jsx" element={<ProductDetails/>}/>
+      <Route path="/cart/:id" element={<ProductDetails/>}/>
+      <Route path="/product/:id" element={<CartPage/>}/>
     </Routes>
-    <div className="toast" ref={toast}>no comment</div>
+    <div className="toast" ref={toast}></div>
     </>
   )
 }

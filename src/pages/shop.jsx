@@ -3,7 +3,6 @@ import TopFilter from "/src/components/filter/topFilter.jsx";
 import Card from "/src/components/card.jsx";
 import { originProducts } from "../js/products.jsx";
 import { useState } from "react";
-import Footer from '../components/footer.jsx'
 function ShopPage(){
     const [products,setProducts] = useState(originProducts);
     const filtersOptions ={
@@ -68,7 +67,8 @@ function ShopPage(){
                         padding:"1rem",
                      gap:" 2rem 1rem "}}>
                         {products.map(p=>
-                            <Card badge={p.badge}
+                            <Card id={p.id}
+                                  badge={p.badge}
                                   image={p.img}
                                   category={p.cat}
                                   title={p.name}

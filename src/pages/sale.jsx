@@ -1,17 +1,52 @@
-import Shop from'./shop.jsx';
-import '../styles/filterbar.css';
-import { Link } from 'react-router-dom';
+import { originProducts } from "../js/products.jsx";
+import TopFilter from "/src/components/filter/topFilter.jsx";
+import Card from "/src/components/card.jsx";
+import { useState } from "react";
+import PageHeader from "../components/pgHeader.jsx";
 function SalePage(){
+    const saleProduct = [...originProducts].filter(pro=>pro.badge == "Sale")
+    const [products,setProducts] = useState(saleProduct);
+    const filtersOptions ={
+        highPrice:500,
+    }
+    function FilterTop(option){
+        switch(option){
+            case "Price: Low to High":
+                setProducts([...saleProduct].sort((a,b)=>a.price-b.price))
+                break;
+            case "Price: High to Low":
+                setProducts([...saleProduct].sort((a,b)=>b.price-a.price))
+                break;
+            case "Best Sellers":
+                setProducts([...saleProduct].filter(pro=>pro.price <= (filtersOptions.highPrice / 2)))
+                break;
+            default :
+                setProducts([...saleProduct])
+                break;
+        }
+    }
     return (
         <div className="page">
-            <div className="pg-header">
-                <div className="breadcrumb">
-                    <Link to="/" className="bc-link">Home</Link>
-                    <span>›</span>
-                    <span className="bc-link">Shop</span>
-                </div>
+            <PageHeader currentPage="Sale"/>
+            <TopFilter title="Sale" length={products.length}
+                            Filtertop={FilterTop}/>
+            <div className="product-grid"
+                     style={{display:"flex",
+                        justifyContent:"center",
+                        flexWrap:"wrap",
+                        padding:"1rem",
+                     gap:" 2rem 1rem "}}>
+                    {products.map(p=>
+                        <Card   id={p.id}
+                            badge={p.badge}
+                            image={p.img}
+                            category={p.cat}
+                            title={p.name}
+                            stars={p.stars}
+                            price={p.price}
+                            key={p.id}/>
+                        )}
             </div>
-            <Shop/>
         </div>
     )
 }

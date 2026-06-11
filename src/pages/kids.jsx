@@ -2,7 +2,6 @@ import { originProducts } from "../js/products.jsx";
 import FilterBar from "/src/components/filter/filterbar.jsx";
 import TopFilter from "/src/components/filter/topFilter.jsx";
 import Card from "/src/components/card.jsx";
-import Footer from '../components/footer.jsx'
 import { useState } from "react";
 function KidsPage(){
     const kidsProduct = [...originProducts].filter(pro=>pro.cat == "kids")
@@ -13,9 +12,6 @@ function KidsPage(){
         sizes:[23,34,343,54,32],
         highPrice:300,
         color:["#920402","red","gray","yello","gold","pink","green"],
-    }
-    function filterSize(size){
-        setProducts([...kidsProduct].filter(pro=>pro.size.includes(size)))
     }
     function filterKids(cat){
         switch(cat){
@@ -45,17 +41,17 @@ function KidsPage(){
     function FilterTop(option){
         switch(option){
             case "Newest":
-                setProducts([...originProducts].filter(pro=>pro.badge == "New"))
+                setProducts([...kidsProduct].filter(pro=>pro.badge == "New"))
                 break;
             case "Price: Low to High":
-                setProducts([...originProducts].sort((a,b)=>a.price-b.price))
+                setProducts([...kidsProduct].sort((a,b)=>a.price-b.price))
 
                 break;
             case "Price: High to Low":
-                setProducts([...originProducts].sort((a,b)=>b.price-a.price))
+                setProducts([...kidsProduct].sort((a,b)=>b.price-a.price))
                 break;
             case "Best Sellers":
-                setProducts([...originProducts].filter(pro=>pro.price <= (filtersOptions.highPrice / 2)))
+                setProducts([...kidsProduct].filter(pro=>pro.price <= (filtersOptions.highPrice / 2)))
                 break;
         }
     }
@@ -73,7 +69,9 @@ function KidsPage(){
                         padding:"1rem",
                      gap:" 2rem 1rem "}}>
                         {products.map(p=>
-                            <Card badge={p.badge}
+                            <Card 
+                                  id={p.id}
+                                  badge={p.badge}
                                   image={p.img}
                                   category={p.cat}
                                   title={p.name}

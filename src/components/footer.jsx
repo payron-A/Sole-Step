@@ -11,7 +11,7 @@ function Footer(){
                   <div className="soc-btn"><i className="fa-brands fa-facebook-f"></i></div>
                   <div className="soc-btn" style={{fontSize:"12px"}}>𝕏</div>
                   <div className="soc-btn" style={{fontSize:"11px"}}>▶</div>
-                  <div className="soc-btn" style={{fontSize:"11px"}}><i class="fa-regular fa-envelope"></i></div>
+                  <div className="soc-btn" style={{fontSize:"11px"}}><i className="fa-regular fa-envelope"></i></div>
                 </div>
               </div>
               <div>

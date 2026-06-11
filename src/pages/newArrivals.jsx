@@ -7,19 +7,22 @@ import { useState } from "react";
 function NewArrivalsPage(){
     const newProduct = [...originProducts].filter(pro=>pro.badge == "New")
     const [products,setProducts] = useState(newProduct);
+    const filtersOptions ={
+        highPrice:500,
+    }
     function FilterTop(option){
         switch(option){
             case "Newest":
-                setProducts([...originProducts].filter(pro=>pro.badge == "New"))
+                setProducts([...newProduct].filter(pro=>pro.badge == "New"))
                 break;
             case "Price: Low to High":
-                setProducts([...originProducts].sort((a,b)=>a.price-b.price))
+                setProducts([...newProduct].sort((a,b)=>a.price-b.price))
                 break;
             case "Price: High to Low":
-                setProducts([...originProducts].sort((a,b)=>b.price-a.price))
+                setProducts([...newProduct].sort((a,b)=>b.price-a.price))
                 break;
             case "Best Sellers":
-                setProducts([...originProducts].filter(pro=>pro.price <= (filtersOptions.highPrice / 2)))
+                setProducts([...newProduct].filter(pro=>pro.price <= (filtersOptions.highPrice / 2)))
                 break;
         }
     }
@@ -34,7 +37,9 @@ function NewArrivalsPage(){
                         padding:"1rem",
                      gap:" 2rem 1rem "}}>
                         {products.map(p=>
-                            <Card badge={p.badge}
+                            <Card 
+                                  id={p.id}
+                                  badge={p.badge}
                                   image={p.img}
                                   category={p.cat}
                                   title={p.name}

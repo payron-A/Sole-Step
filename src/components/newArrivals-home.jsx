@@ -1,18 +1,11 @@
 import { useRef, useState } from "react";
+import { originProducts } from "../js/products";
 import Card from "./card";
 import { Link } from "react-router-dom";
 import Button from "./button";
-
-const products = [
-  { id: 1, badge: "Special", image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=620&auto=format&fit=crop", category: "Women · Shoes", title: "White Premium Sneakers", stars: 5, price: "$89.00", originalPrice: "$120.00" },
-  { id: 2, badge: "New",     image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=620&auto=format&fit=crop", category: "Men · Shoes",   title: "Sport Run Trainer",       stars: 4, price: "$95.00", originalPrice: "$130.00" },
-  { id: 3, badge: null,      image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=620&auto=format&fit=crop", category: "Men · Shoes",   title: "Classic Comfort Loafers", stars: 4, price: "$74.00", originalPrice: "$99.00"  },
-  { id: 4, badge: "Special", image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=620&auto=format&fit=crop", category: "Women · Shoes", title: "Rose Suede Mules",        stars: 5, price: "$112.00",originalPrice: "$145.00" },
-  { id: 5, badge: null,      image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=620&auto=format&fit=crop", category: "Unisex · Socks","title": "Merino Crew Socks",    stars: 5, price: "$24.00", originalPrice: null       },
-  { id: 6, badge: "Sale",    image: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=620&auto=format&fit=crop", category: "Men · Shoes",   title: "Leather Derby Oxfords",  stars: 5, price: "$138.00",originalPrice: "$179.00" },
-];
-
 function NewArrivals() {
+  const newProduct = [...originProducts].filter(pro=>pro.badge == "New")
+  const [products,setProducts] = useState(newProduct);
   const trackRef = useRef(null);
   const [current, setCurrent] = useState(0);
   const isDragging = useRef(false);
@@ -88,15 +81,14 @@ function NewArrivals() {
             className="carousel-item"
             style={{ animationDelay: `${i * 0.1}s` }}
           >
-            <Card
-              badge={p.badge}
-              image={p.image}
-              category={p.category}
-              title={p.title}
-              stars={p.stars}
-              price={p.price}
-              originalPrice={p.originalPrice}
-            />
+            <Card id={p.id}
+                  badge={p.badge}
+                  image={p.img}
+                  category={p.cat}
+                  title={p.name}
+                  stars={p.stars}
+                  price={p.price}
+                  key={p.id}/>
           </div>
         ))}
       </div>
@@ -106,8 +98,6 @@ function NewArrivals() {
           <button
             key={i}
             className={`dot ${i === current ? "dot-active" : ""}`}
-            onClick={() => goTo(i)}
-            aria-label={`Go to product ${i + 1}`}
           />
         ))}
       </div>
