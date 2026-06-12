@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import '../styles/navbar.css';
 import { Link } from 'react-router-dom';
-function Navbar({toast}){
+import { useCart } from '../context/CartContext';
+function Navbar(){
+    const { cart } = useCart();
     const navbarLinks = useRef();
     const navbarIcon = useRef();
     function hideNavbar(){
@@ -17,13 +19,6 @@ function Navbar({toast}){
             hideNavbar();
         }
     }
-    function showToastMsg(msg){
-                toast.current.classList.toggle("show");
-                toast.current.textContent = msg;
-                setTimeout(() => {
-                    toast.current.classList.remove("show")
-                }, 2000);
-    }
     return(
         <nav>
             <Link to='/'><div className="nav-logo">Sole &amp; <em>Step</em></div></Link>
@@ -37,7 +32,7 @@ function Navbar({toast}){
               <li><Link onClick={hideNavbar} to='/sale.jsx'className="sale">Sale</Link></li>
             </ul>
             <div className="nav-icons">
-              <button className="nav-icon" title="Wishlist"onClick={()=>showToastMsg("wishList is not comming yet")}>
+              <button className="nav-icon" title="Wishlist"onClick={()=>showToast("wishList is not comming yet")}>
                 <svg width="19" height="19"
                      fill="none" 
                      stroke="currentColor" 
@@ -45,7 +40,7 @@ function Navbar({toast}){
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                 </svg>
               </button>
-              <Link>
+              <Link to="/cart">
                 <button className="nav-icon" title="Cart">
                 <svg width="19" height="19" 
                      fill="none" stroke="currentColor" 
@@ -54,7 +49,9 @@ function Navbar({toast}){
                     <line x1="3" y1="6" x2="21" y2="6"/>
                     <path d="M16 10a4 4 0 0 1-8 0"/>
                 </svg>
-                <span className="cart-badge" id="cartBadge">0</span>
+                <span className="cart-badge" id="cartBadge">
+                    {cart.length}
+                </span>
               </button>
               </Link>
               <button className="nav-icon nav-menu" title="menu"
