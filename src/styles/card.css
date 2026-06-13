@@ -36,7 +36,6 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background: var(--white);
   width: 34px;
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -48,9 +47,7 @@
   transition: background-color 0.2s;
   z-index: 10;
 }
-.wishlist-btn:hover { background-color: var(--brown); }
-.wishlist-btn i { color: var(--rose); }
-
+.wishlist-btn:hover { background-color: var(--rose-pale); }
 /* Image */
 .card-header {
   position: relative;
@@ -79,11 +76,6 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 6px;
-}
-.product-title {
-  color: var(--charcoal);
-  font-weight: bold;
-  margin-bottom: 0.5rem;
 }
 .rating {
   display: flex;

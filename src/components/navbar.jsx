@@ -2,7 +2,9 @@ import { useRef } from 'react';
 import '../styles/navbar.css';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/wishlistContext';
 function Navbar(){
+    const { wishlist } = useWishlist();
     const { cart } = useCart();
     const navbarLinks = useRef();
     const navbarIcon = useRef();
@@ -32,14 +34,13 @@ function Navbar(){
               <li><Link onClick={hideNavbar} to='/sale.jsx'className="sale">Sale</Link></li>
             </ul>
             <div className="nav-icons">
-              <button className="nav-icon" title="Wishlist"onClick={()=>showToast("wishList is not comming yet")}>
-                <svg width="19" height="19"
-                     fill="none" 
-                     stroke="currentColor" 
-                     strokeWidth="1.8" viewBox="0 0 24 24">
+            <Link to="/wishlist" className="nav-icon" title="Wishlist" style={{position:'relative'}}>
+                <svg width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                 </svg>
-              </button>
+                {wishlist.length > 0 && <span className="cart-badge">{wishlist.length}</span>}
+            </Link>
+              
               <Link to="/cart">
                 <button className="nav-icon" title="Cart">
                 <svg width="19" height="19" 

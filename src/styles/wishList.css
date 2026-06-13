@@ -1,0 +1,134 @@
+.wl-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  min-height: 60vh;
+}
+
+/* Header */
+.wl-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.wl-count {
+  font-size: 13px;
+  color: var(--taupe);
+  margin-top: 8px;
+}
+
+/* Empty state */
+.wl-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 80px 0;
+  color: var(--taupe);
+}
+.wl-empty p {
+  font-size: 15px;
+}
+.wl-shop-btn {
+  margin-top: 8px;
+  padding: 12px 32px;
+  background: var(--charcoal);
+  color: var(--white);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background .2s;
+}
+.wl-shop-btn:hover {
+  background: var(--rose);
+}
+
+/* Grid */
+.wl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+/* Card */
+.wl-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(36,22,16,.08);
+  transition: transform .3s ease;
+}
+.wl-card:hover {
+  transform: translateY(-5px);
+}
+.wl-card-img {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+.wl-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.wl-card:hover .wl-card-img img {
+  transform: scale(1.05);
+}
+
+/* Remove button */
+.wl-remove-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--rose);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  transition: background .2s, color .2s;
+}
+.wl-remove-btn:hover {
+  background: var(--rose);
+  color: var(--white);
+}
+
+/* Card info */
+.wl-card-info {
+  padding: 16px;
+  text-align: center;
+}
+.wl-card-name {
+  display: block;
+  font-family: var(--title-font);
+  font-size: 1.05rem;
+  color: var(--charcoal);
+  margin: 4px 0 8px;
+  font-weight: 600;
+}
+.wl-card-name:hover {
+  color:var(--rose-dark);
+}
+.wl-card-price {
+  font-family: var(--title-font);
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--charcoal);
+  margin-bottom: 14px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .wl-wrap {
+    padding: 40px 20px;
+  }
+  .wl-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}

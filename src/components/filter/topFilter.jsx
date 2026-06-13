@@ -4,6 +4,7 @@ function TopFilter({title,length,Filtertop}){
             <h2 style={{color:"var(--gold)"}}>{title}</h2>
             <div style={{display:"flex",gap:"14px",alignItems:"center"}}>
                 <select className="sort-sel" onChange={(e)=>{Filtertop(e.target.value)}}>
+                    <option disabled selected>Default</option>
                     <option>Newest</option>
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>

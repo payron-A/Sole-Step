@@ -1,9 +1,10 @@
 import { useCart } from '../context/CartContext';
 import PageHeader from "../components/pgHeader";
 import '../styles/cart.css';
-
+import Button from '../components/button';
+import { Link } from 'react-router-dom';
 function CartPage(){
-    const { cart, removeFromCart } = useCart();
+    const { cart, removeFromCart,setCart } = useCart();
 
     const subtotal = cart.reduce((sum, item) => sum + Number(item.price), 0);
     const shipping = subtotal > 0 ? 10 : 0;
@@ -53,7 +54,7 @@ function CartPage(){
                                 <div className="e-ico">🛍</div>
                                 <p style={{marginBottom:"8px",fontSize:"16px"}}>Your cart is empty</p>
                                 <p style={{fontSize:"13px",marginBottom:"28px"}}>Add some beautiful shoes to get started!</p>
-                                <button className="btn btn-dark">Start Shopping</button>
+                                <Link to="/shop.jsx"><Button variant="btn-dark">Start Shopping</Button></Link>
                             </div>
                         }
                     </div>
@@ -68,8 +69,17 @@ function CartPage(){
                                 <input className="coup-in" placeholder="Coupon code"/>
                                 <button className="coup-btn">Apply</button>
                             </div>
-                            <button className="btn btn-rose" style={{width:"100%",justifyContent:"center"}}>Proceed to Checkout →</button>
-                            <button className="btn btn-outline" style={{width:"100%",justifyContent:"center",marginTop:"10px"}}>Continue Shopping</button>
+                            {cart.length > 0 && <button className="btn btn-delete" style={{width:"100%",justifyContent:"center"}}
+                                    onClick={()=>setCart([])}>
+                                Clear the Cart 
+                                <i className="fa-solid fa-eraser"></i>
+                            </button>}
+                            <Link to="/shop.jsx"><button className="btn btn-outline"
+                                                         style={{width:"100%",justifyContent:"center",
+                                                         marginTop:"10px"}}>
+                                                            {cart.length>0?"Continue Shopping":"Start Shopping"}
+                                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -8,9 +8,12 @@ import NewArrivalsPage from "./pages/newArrivals";
 import SalePage from "./pages/sale";
 import ProductDetails from "./pages/productDetails.jsx";
 import CartPage from "./pages/Cart.jsx";
+import WishlistPage from "./pages/wishList.jsx";
+import { WishlistProvider } from "./context/wishlistContext";
 function App(){
   return (
     <>
+    <WishlistProvider>
     <Navbar/>
     <Routes>
       <Route path="/" element={<HomePage/>}/>
@@ -21,7 +24,9 @@ function App(){
       <Route path="/sale.jsx" element={<SalePage/>}/>
       <Route path="/cart" element={<CartPage/>}/>
       <Route path="/product/:id" element={<ProductDetails/>}/>
+      <Route path="/wishList" element={<WishlistPage/>}/>
     </Routes>
+    </WishlistProvider>
     </>
   )
 }

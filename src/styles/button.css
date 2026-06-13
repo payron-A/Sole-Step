@@ -11,6 +11,13 @@
     transition:all .25s;
     border-radius:var(--radius)
 }
+.btn-delete{
+    color : var(--white);
+    background-color:var(--charcoal);
+}
+.btn-delete:hover{
+    background-color: rgb(186, 1, 1);
+}
 .btn-dark{
     background:var(--charcoal);
     color:#fff;

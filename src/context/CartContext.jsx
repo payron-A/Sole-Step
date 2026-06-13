@@ -16,15 +16,14 @@ export function CartProvider({ children }) {
   function addToCart(product) {
     if(cart.some(item=>item.id === product.id))return showToast("Already in cart!");
     setCart(prev =>[...prev, product]);
-    showToast("Added to cart ✓");
+    showToast(`Added ${product.title} to cart ✓`);
   }
-
   function removeFromCart(id) {
     setCart(prev => prev.filter(item => item.id !== id));
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart,showToast }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart,showToast ,setCart}}>
       {children}
        <div className="toast" ref={toastRef}></div>
     </CartContext.Provider>
