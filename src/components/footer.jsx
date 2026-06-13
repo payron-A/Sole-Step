@@ -1,6 +1,7 @@
 import '../styles/footer.css';
 import { Link } from 'react-router-dom';
 function Footer(){
+    const year = new Date().getFullYear();
     return(
         <footer>
             <div className="footer-grid">
@@ -16,10 +17,10 @@ function Footer(){
               </div>
               <div>
                 <div className="ft-col-ttl">Shop</div>
-                <Link to="/women.jsx" className="ft-link">Women</Link>
-                <Link to="/kids.jsx" className="ft-link">Kids</Link>
-                <Link to="/newArrivals.jsx" className="ft-link">New Arrivals</Link>
-                <Link to="/sale.jsx" className="ft-link">Sale</Link>
+                <Link to="/women" className="ft-link">Women</Link>
+                <Link to="/kids" className="ft-link">Kids</Link>
+                <Link to="/newArrivals" className="ft-link">New Arrivals</Link>
+                <Link to="/sale" className="ft-link">Sale</Link>
               </div>
               <div>
                 <div className="ft-col-ttl">Customer Care</div>
@@ -37,7 +38,7 @@ function Footer(){
               </div>
             </div>
   <div className="footer-bottom">
-    <span>© 2024 Sole &amp; Step. All Rights Reserved.</span>
+    <span>© {year} Sole &amp; Step. All Rights Reserved.</span>
     <div className="ft-pay">
       <div className="ft-pay-ic">VISA</div>
       <div className="ft-pay-ic" style={{color:"#eb001b"}}>MC</div>

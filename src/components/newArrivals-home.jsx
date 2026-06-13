@@ -103,7 +103,7 @@ function NewArrivals() {
       </div>
 
       <div style={{ textAlign: "center", marginTop: "44px" }}>
-        <Link to="/shop.jsx"><Button variant="btn-outline">View All Products</Button></Link>
+        <Link to="/shop"><Button variant="btn-outline">View All Products</Button></Link>
       </div>
     </section>
   );

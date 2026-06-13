@@ -27,11 +27,11 @@ function Navbar(){
             <ul className="nav-links"
                 ref={navbarLinks}>
               <li><Link onClick={hideNavbar} to='/'>Home</Link></li>
-              <li><Link onClick={hideNavbar} to='/shop.jsx'>Shop</Link></li>
-              <li><Link onClick={hideNavbar} to='/women.jsx'>Women</Link></li>
-              <li><Link onClick={hideNavbar} to='/kids.jsx'>Kids</Link></li>
-              <li><Link onClick={hideNavbar} to='/newArrivals.jsx'>New Arrivals</Link></li>
-              <li><Link onClick={hideNavbar} to='/sale.jsx'className="sale">Sale</Link></li>
+              <li><Link onClick={hideNavbar} to='/shop'>Shop</Link></li>
+              <li><Link onClick={hideNavbar} to='/women'>Women</Link></li>
+              <li><Link onClick={hideNavbar} to='/kids'>Kids</Link></li>
+              <li><Link onClick={hideNavbar} to='/newArrivals'>New Arrivals</Link></li>
+              <li><Link onClick={hideNavbar} to='/sale'className="sale">Sale</Link></li>
             </ul>
             <div className="nav-icons">
             <Link to="/wishlist" className="nav-icon" title="Wishlist" style={{position:'relative'}}>
@@ -50,7 +50,7 @@ function Navbar(){
                     <line x1="3" y1="6" x2="21" y2="6"/>
                     <path d="M16 10a4 4 0 0 1-8 0"/>
                 </svg>
-                <span className="cart-badge" id="cartBadge">
+                <span className="cart-badge">
                     {cart.length}
                 </span>
               </button>

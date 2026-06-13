@@ -9,6 +9,7 @@ import SalePage from "./pages/sale";
 import ProductDetails from "./pages/productDetails.jsx";
 import CartPage from "./pages/Cart.jsx";
 import WishlistPage from "./pages/wishList.jsx";
+import AboutPage from './pages/about';
 import { WishlistProvider } from "./context/wishlistContext";
 function App(){
   return (
@@ -17,12 +18,13 @@ function App(){
     <Navbar/>
     <Routes>
       <Route path="/" element={<HomePage/>}/>
-      <Route path="/shop.jsx" element={<ShopPage/>}/>
-      <Route path="/women.jsx" element={<WomenPage/>}/>
-      <Route path="/kids.jsx" element={<KidsPage/>}/>
-      <Route path="/newArrivals.jsx" element={<NewArrivalsPage/>}/>
-      <Route path="/sale.jsx" element={<SalePage/>}/>
+      <Route path="/shop" element={<ShopPage/>}/>
+      <Route path="/women" element={<WomenPage/>}/>
+      <Route path="/kids" element={<KidsPage/>}/>
+      <Route path="/newArrivals" element={<NewArrivalsPage/>}/>
+      <Route path="/sale" element={<SalePage/>}/>
       <Route path="/cart" element={<CartPage/>}/>
+      <Route path="/about" element={<AboutPage/>}/>
       <Route path="/product/:id" element={<ProductDetails/>}/>
       <Route path="/wishList" element={<WishlistPage/>}/>
     </Routes>

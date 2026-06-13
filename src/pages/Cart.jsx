@@ -54,7 +54,7 @@ function CartPage(){
                                 <div className="e-ico">🛍</div>
                                 <p style={{marginBottom:"8px",fontSize:"16px"}}>Your cart is empty</p>
                                 <p style={{fontSize:"13px",marginBottom:"28px"}}>Add some beautiful shoes to get started!</p>
-                                <Link to="/shop.jsx"><Button variant="btn-dark">Start Shopping</Button></Link>
+                                <Link to="/shop"><Button variant="btn-dark">Start Shopping</Button></Link>
                             </div>
                         }
                     </div>
@@ -63,8 +63,8 @@ function CartPage(){
                             <h2 className="sum-ttl">Order Summary</h2>
                             <div className="sum-row"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
                             <div className="sum-row"><span>Shipping</span><span>${shipping.toFixed(2)}</span></div>
-                            <div className="sum-row"><span>Tax (8%)</span><span>${tax}</span></div>
-                            <div className="sum-row total"><span>Total</span><span>${total}</span></div>
+                            <div className="sum-row"><span>Tax (8%)</span><span>${tax.toFixed(2)}</span></div>
+                            <div className="sum-row total"><span>Total</span><span>${total.toFixed(2)}</span></div>
                             <div className="coupon-w">
                                 <input className="coup-in" placeholder="Coupon code"/>
                                 <button className="coup-btn">Apply</button>
@@ -74,7 +74,7 @@ function CartPage(){
                                 Clear the Cart 
                                 <i className="fa-solid fa-eraser"></i>
                             </button>}
-                            <Link to="/shop.jsx"><button className="btn btn-outline"
+                            <Link to="/shop"><button className="btn btn-outline"
                                                          style={{width:"100%",justifyContent:"center",
                                                          marginTop:"10px"}}>
                                                             {cart.length>0?"Continue Shopping":"Start Shopping"}

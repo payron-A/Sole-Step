@@ -11,8 +11,8 @@ function Hero(){
             <p className="hero-sub">Premium shoes &amp; socks for women and kids.</p>
             <p className="hero-tag">Comfort. Style. Confidence.</p>
             <div className="hero-cta">
-                <Link to="/shop.jsx"><Button variant ="btn-dark">Shop Now →</Button></Link>
-                <Button variant ="btn-outline"> Our Story</Button>
+                <Link to="/shop"><Button variant ="btn-dark">Shop Now →</Button></Link>
+                <Link to='/about'><Button variant ="btn-outline"> Our Story</Button></Link>
             </div>
             <div className="hero-stats">
                 <div><div className="stat-n">2K+</div><div className="stat-l">Products</div></div>

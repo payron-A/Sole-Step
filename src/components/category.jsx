@@ -10,7 +10,7 @@ function Category(){
             </div>
             <div className="cat-grid">
                 <div className="cat-card">
-                  <Link to='/women.jsx'>
+                  <Link to='/women'>
                     <img src="https://picsum.photos/seed/cat_women/500/480" alt="Women"/>
                     <div className="cat-ov">
                       <h3 className="cat-name">Women</h3>
@@ -19,7 +19,7 @@ function Category(){
                   </Link>
                 </div>
               <div className="cat-card">
-                <Link to='/kids.jsx'>
+                <Link to='/kids'>
                   <img src="https://picsum.photos/seed/cat_kids/500/480" alt="Kids"/>
                   <div className="cat-ov">
                       <h3 className="cat-name">Kids</h3>
@@ -28,7 +28,7 @@ function Category(){
                 </Link>
               </div>
               <div className="cat-card">
-                <Link to='/newArrivals.jsx'>
+                <Link to='/newArrivals'>
                   <img src="https://picsum.photos/seed/cat_/500/480" alt="Kids"/>
                   <div className="cat-ov">
                       <h3 className="cat-name">Others</h3>
@@ -38,7 +38,7 @@ function Category(){
               </div>
             </div>
             <div style={{textAlign:"center",marginTop:"44px"}}>
-              <Link to='/shop.jsx'><Button variant="btn-outline">Explore All</Button></Link>
+              <Link to='/shop'><Button variant="btn-outline">Explore All</Button></Link>
             </div>
         </section>
     )
