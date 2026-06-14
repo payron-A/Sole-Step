@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Button from "./button";
 function NewArrivals() {
   const newProduct = [...originProducts].filter(pro=>pro.badge == "New")
-  const [products,setProducts] = useState(newProduct);
   const trackRef = useRef(null);
   const [current, setCurrent] = useState(0);
   const isDragging = useRef(false);
@@ -15,7 +14,7 @@ function NewArrivals() {
   const CARD_WIDTH = 340; // card width + gap
 
   const goTo = (idx) => {
-    const clamped = Math.max(0, Math.min(idx, products.length - 1));
+    const clamped = Math.max(0, Math.min(idx, newProduct.length - 1));
     setCurrent(clamped);
     trackRef.current.scrollTo({ left: clamped * CARD_WIDTH, behavior: "smooth" });
   };
@@ -58,10 +57,10 @@ function NewArrivals() {
       </div>
 
       <div className="carousel-nav">
-        <button className="nav-arrow" onClick={() => goTo(current - 1)} disabled={current === 0} aria-label="Previous">
+        <button className="nav-arrow" onClick={() => goTo(current - 1)} disabled={current === 0}>
           <i className="fa-solid fa-arrow-left"></i>
         </button>
-        <button className="nav-arrow" onClick={() => goTo(current + 1)} disabled={current >= products.length - 1} aria-label="Next">
+        <button className="nav-arrow" onClick={() => goTo(current + 1)} disabled={current >= newProduct.length - 1}>
           <i className="fa-solid fa-arrow-right"></i>
         </button>
       </div>
@@ -75,7 +74,7 @@ function NewArrivals() {
         onMouseLeave={onMouseUp}
         onScroll={onScroll}
       >
-        {products.map((p, i) => (
+        {newProduct.map((p, i) => (
           <div
             key={p.id}
             className="carousel-item"
@@ -94,10 +93,11 @@ function NewArrivals() {
       </div>
 
       <div className="carousel-dots">
-        {products.map((_, i) => (
+        {[...newProduct].map((_, i) => (
           <button
             key={i}
             className={`dot ${i === current ? "dot-active" : ""}`}
+            onClick={()=>goTo(i)}
           />
         ))}
       </div>

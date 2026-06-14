@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useWishlist } from '../context/wishlistContext';
 import '../styles/card.css';
 import { useCart } from '../context/CartContext';
+import { useToast } from '../context/toastContext';
 function Card({ id, badge, image, category, title, stars = 0, price, originalPrice=""}) {
   const { addToCart } = useCart();
   const { toggleWishlist, isWishlisted } = useWishlist();
