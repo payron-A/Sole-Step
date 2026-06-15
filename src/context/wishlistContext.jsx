@@ -1,16 +1,20 @@
-import { createContext, useContext, useState } from 'react';
-
+import { createContext, useContext, useEffect, useState } from 'react';
+import { useToast } from '../context/toastContext';
 const WishlistContext = createContext();
 
 export function WishlistProvider({ children }) {
-  const [wishlist, setWishlist] = useState([]);
-
+  const [wishlist, setWishlist] =useState(JSON.parse(localStorage.getItem("wishList"))||[]);
+  useEffect(()=>{
+    localStorage.setItem("wishList",JSON.stringify(wishlist));
+  },[wishlist])
+  const {showToast} = useToast();
   function toggleWishlist(product) {
-    setWishlist(prev =>
-      prev.find(p => p.id === product.id)
-        ? prev.filter(p => p.id !== product.id)
-        : [...prev, product]
+    const isFind = [...wishlist].find(p => p.id === product.id);
+    setWishlist(isFind? [...wishlist].filter(p => p.id !== product.id)
+                      : [...wishlist, product]
     );
+    !isFind?showToast(`Added ${product.name} to WishList`)
+          :showToast(`Remove ${product.name} to WishList`)
   }
 
   function isWishlisted(id) {

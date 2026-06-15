@@ -1,4 +1,5 @@
 import {useRef, createContext, useContext } from "react";
+import App from '../App.jsx';
 const ToastContext = createContext();
 export function ToastProvider(){
     const toastRef = useRef();
@@ -11,9 +12,10 @@ export function ToastProvider(){
   }
     return (
     <ToastContext.Provider value={{showToast,useToast}}>
+        <App/>
         <div className="toast" ref={toastRef}></div>
     </ToastContext.Provider>)
 }
 export function useToast(){
-    return useContext(ToastContext)
+    return useContext(ToastContext);
 }

@@ -1,13 +1,14 @@
-import { createContext, useContext, useState ,useRef} from "react";
-
+import { createContext, useContext, useState,useEffect} from "react";
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart"))||[]);
+    useEffect(()=>{
+      localStorage.setItem("cart",JSON.stringify(cart));
+    },[cart])
   function addToCart(product) {
-    if(cart.some(item=>item.id === product.id))return showToast("Already in cart!");
+    if(cart.some(item=>item.id === product.id))return ;
     setCart(prev =>[...prev, product]);
-    showToast(`Added ${product.title} to cart ✓`);
   }
   function removeFromCart(id) {
     setCart(prev => prev.filter(item => item.id !== id));

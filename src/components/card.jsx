@@ -5,6 +5,7 @@ import { useCart } from '../context/CartContext';
 import { useToast } from '../context/toastContext';
 function Card({ id, badge, image, category, title, stars = 0, price, originalPrice=""}) {
   const { addToCart } = useCart();
+  const {showToast} = useToast();
   const { toggleWishlist, isWishlisted } = useWishlist();
   const product = { id, name: title, img: image, price, cat: category, stars, badge };
   const wishlisted = isWishlisted(id);
@@ -15,9 +16,9 @@ function Card({ id, badge, image, category, title, stars = 0, price, originalPri
     <div className="product-card">
       {badge && <div className="badge">{badge}</div>}
       <div className="card-header">
-        <button className="wishlist-btn" aria-label="Add to wishlist"
+        <button className="wishlist-btn"
                 onClick={() => {
-                  toggleWishlist(product)
+                  toggleWishlist(product);
                   }}>
             <svg width="16" height="16"
                 fill={wishlisted ? 'var(--rose)' : 'none'}
@@ -42,7 +43,7 @@ function Card({ id, badge, image, category, title, stars = 0, price, originalPri
           <span className="current-price">{price.toFixed(2)}$</span>
           {originalPrice && <span className="original-price">{originalPrice}$</span>}
         </div>
-        <button className="add-to-cart-btn" onClick={handleAddToCart}>Add to Cart</button>
+        <button className="add-to-cart-btn" onClick={()=>{handleAddToCart();showToast(`Add ${product.name} to Cart`)}}>Add to Cart</button>
       </div>
     </div>
   );
