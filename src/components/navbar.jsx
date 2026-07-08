@@ -27,7 +27,7 @@ function Navbar(){
             <ul className="nav-links"
                 ref={navbarLinks}>
               <li><Link onClick={hideNavbar} to='/'>Home</Link></li>
-              <li><Link onClick={hideNavbar} to='/shop'>Shop</Link></li>
+              <li><Link onClick={hideNavbar} to='/soleHub'>Shop</Link></li>
               <li><Link onClick={hideNavbar} to='/women'>Women</Link></li>
               <li><Link onClick={hideNavbar} to='/kids'>Kids</Link></li>
               <li><Link onClick={hideNavbar} to='/newArrivals'>New Arrivals</Link></li>

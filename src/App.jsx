@@ -11,6 +11,7 @@ import CartPage from "./pages/Cart.jsx";
 import WishlistPage from "./pages/wishList.jsx";
 import AboutPage from './pages/about';
 import { WishlistProvider } from "./context/wishlistContext";
+import SoleHubPage from "./pages/SoleHub/soleHub.jsx";
 function App(){
   return (
     <>
@@ -27,6 +28,7 @@ function App(){
       <Route path="/about" element={<AboutPage/>}/>
       <Route path="/product/:id" element={<ProductDetails/>}/>
       <Route path="/wishList" element={<WishlistPage/>}/>
+      <Route path="/soleHub" element={<SoleHubPage/>}/>
     </Routes>
     </WishlistProvider>
     </>
