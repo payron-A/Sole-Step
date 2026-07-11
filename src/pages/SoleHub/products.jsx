@@ -49,7 +49,7 @@ function ProductsPage(){
                         <td>3</td>
                         <td>$15.00</td>
                         <td>
-                            <span className="status warn">Active</span>
+                            <div className="status warn">Low Stock</div>
                         </td>
                         <td>
                             <div className="row-actions">
@@ -68,7 +68,7 @@ function ProductsPage(){
                             </div>
                         </td>
                     </tr>
-                                        <tr>
+                    <tr>
                         <td>
                             <span className="cell-thumb">
                                 <svg viewBox="0 0 24 24" 
@@ -81,7 +81,7 @@ function ProductsPage(){
                         <td>3</td>
                         <td>$15.00</td>
                         <td>
-                            <span className="status ok">Active</span>
+                            <div className="status ok">Active</div>
                         </td>
                         <td>
                             <div className="row-actions">
@@ -90,17 +90,16 @@ function ProductsPage(){
                                         stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 20h4L18 10l-4-4L4 16v4z"/>
                                     </svg>
                                 </button>
-                            
-                            <button className="icon-btn">
-                                <svg viewBox="0 0 24 24" fill="none" 
-                                    stroke="currentColor" strokeWidth="1.8" 
-                                    strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
-                                </svg>
-                            </button>
+                                <button className="icon-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" 
+                                        stroke="currentColor" strokeWidth="1.8" 
+                                        strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
+                                    </svg>
+                                </button>
                             </div>
                         </td>
                     </tr>
-                    </tbody>
+                </tbody>
             </table>
         </div>
     </section>
