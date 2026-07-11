@@ -432,7 +432,7 @@
   gap:12px; 
   margin-bottom:14px;
 }
-.customer-head .img{ 
+.img{
   width:48px; 
   height:48px; 
   border:1px solid var(--stone);
@@ -500,6 +500,75 @@
   display:inline-block; 
   margin-right:8px; 
 }
+
+/* ________ APP SHELL ________ */
+/* ________ Reviews   ________ */
+
+
+.btn-ghost{ 
+  background:var(--white);
+  border:1px solid var(--stone); 
+  color:var(--brown); 
+  border-radius:8px; 
+  padding:10px 16px; 
+  font-size:13px; 
+  font-weight:600; 
+  cursor:pointer; 
+  display:inline-flex; 
+  justify-content: center;
+  align-items:center; 
+  gap:8px;
+  padding:6px 12px; 
+  font-size:12px; 
+}
+.btn-ghost:hover{ 
+  border-color:var(--gold); 
+  color:var(--rose-dark); 
+}
+.btn-ghost.danger{ 
+  color:#B4453A; 
+}
+
+.review-list{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:14px; 
+}
+.review-card{ 
+  display:flex; 
+  gap:14px; 
+  background:var(--white); 
+  border:1px solid var(--stone);
+  border-radius:14px; 
+  padding:16px 18px; 
+  align-items:flex-start; 
+}
+.review-body{ 
+  flex:1; 
+}
+.review-top{ 
+  display:flex; 
+  align-items:center; 
+  gap:10px; 
+  margin-bottom:4px; 
+}
+.review-stars{ 
+  color:var(--gold); 
+  font-size:12px; 
+  letter-spacing:2px; 
+}
+.review-body p{ 
+  font-size:13px; 
+  color:var(--brown); 
+  line-height:1.5; 
+}
+.review-actions{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:6px; 
+}
+
+
 
 /* ---------- responsive ---------- */
 @media (max-width:1100px){
