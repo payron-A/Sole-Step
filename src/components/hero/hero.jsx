@@ -47,7 +47,7 @@ function Hero(){
     </div>
     <div className="hero-visual">
         <img className="hero-img" 
-            src="https://picsum.photos/seed/sole_hero/500/560"
+            src="https://images4.alphacoders.com/859/thumb-1920-859755.jpg"
             alt="Sole & Step Hero"/>
         <div className="hero-card c1">
             <div className="hc-label">Free Shipping</div>

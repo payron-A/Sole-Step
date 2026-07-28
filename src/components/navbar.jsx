@@ -9,7 +9,7 @@ function Navbar(){
     const navbarLinks = useRef();
     const navbarIcon = useRef();
     function hideNavbar(){
-      navbarLinks.current.style.right = "-200px";
+      navbarLinks.current.style.right = "-100%";
       navbarIcon.current.classList.remove("active");
     }
     function showNavbar(){
